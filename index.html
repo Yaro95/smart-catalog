@@ -10,32 +10,44 @@
   <header>
     <a href="#" id="home-button">Домой</a>
     <h1>Смарт-каталог квартир</h1>
-    <p>Выберите блок и этаж, чтобы найти квартиру.</p>
+    <p>Выберите режим: </p>
+    <select id="mode-selector">
+      <option value="buyer">Покупатель</option>
+      <option value="developer">Застройщик</option>
+    </select>
   </header>
   
   <main>
-    <section id="block-selection">
+    <!-- Каталог для покупателя -->
+    <section id="buyer-section">
       <h2>Выберите блок</h2>
       <div class="blocks">
-        <!-- Добавим блоки динамически с помощью JavaScript -->
+        <!-- Блоки -->
       </div>
-    </section>
-    
-    <section id="floor-selection" style="display:none;">
+      
       <h2>Выберите этаж</h2>
       <div class="floors">
-        <!-- Этажи будут отображаться после выбора блока -->
+        <!-- Этажи -->
+      </div>
+      
+      <h2>Выберите квартиру</h2>
+      <div class="apartments">
+        <!-- Квартиры -->
       </div>
     </section>
     
-    <section id="apartment-selection" style="display:none;">
-      <h2>Выберите квартиру</h2>
-      <div class="apartments">
-        <!-- Квартиры будут отображаться после выбора этажа -->
-      </div>
+    <!-- Панель для застройщика -->
+    <section id="developer-section" style="display:none;">
+      <h2>Панель управления застройщика</h2>
+      <label>Загрузить изображение блоков:</label>
+      <input type="file" id="upload-blocks"><br>
+      <label>Загрузить планировку этажа:</label>
+      <input type="file" id="upload-floors"><br>
+      <label>Загрузить планировки квартир:</label>
+      <input type="file" id="upload-apartments"><br>
     </section>
   </main>
-  
+
   <footer>
     <p>Разработано для демонстрации смарт-каталога</p>
   </footer>
