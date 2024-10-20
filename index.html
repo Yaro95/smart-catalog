@@ -10,11 +10,15 @@
   <header>
     <a href="#" id="home-button">Домой</a>
     <h1>Смарт-каталог квартир</h1>
-    <p>Выберите режим: </p>
-    <select id="mode-selector">
-      <option value="buyer">Покупатель</option>
-      <option value="developer">Застройщик</option>
-    </select>
+    <!-- Добавляем переключатель для выбора режима -->
+    <div class="mode-toggle">
+      <span>Покупатель</span>
+      <label class="switch">
+        <input type="checkbox" id="mode-switch">
+        <span class="slider round"></span>
+      </label>
+      <span>Застройщик</span>
+    </div>
   </header>
   
   <main>
