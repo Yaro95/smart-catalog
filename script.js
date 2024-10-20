@@ -1,16 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const modeSwitch = document.getElementById('mode-switch');
-  const buyerSection = document.getElementById('buyer-section');
-  const developerSection = document.getElementById('developer-section');
-
-  // Переключение между покупателем и застройщиком
-  modeSwitch.addEventListener('change', function() {
-    if (modeSwitch.checked) {
-      buyerSection.style.display = 'none';        // Скрыть интерфейс покупателя
-      developerSection.style.display = 'block';   // Показать панель застройщика
-    } else {
-      developerSection.style.display = 'none';    // Скрыть панель застройщика
-      buyerSection.style.display = 'block';       // Показать интерфейс покупателя
-    }
-  });
-});
+<div class="mode-toggle">
+  <span>Покупатель</span>
+  <label class="switch">
+    <input type="checkbox" id="mode-switch">
+    <span class="slider round"></span>
+  </label>
+  <span>Застройщик</span>
+</div>
