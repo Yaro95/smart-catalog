@@ -52,3 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+document.getElementById('home-button').addEventListener('click', function (e) {
+  e.preventDefault();
+  // Перезагружаем страницу, возвращая пользователя к начальному виду
+  location.reload();
+});
