@@ -4,51 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Смарт-каталог квартир</title>
-  <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <a href="#" id="home-button">Домой</a>
     <h1>Смарт-каталог квартир</h1>
-    <div class="toggle-container">
-      <span>Покупатель</span>
-      <label class="switch">
-        <input type="checkbox" id="mode-toggle">
-        <span class="slider round"></span>
-      </label>
-      <span>Застройщик</span>
+    <div>
+      <label>Покупатель</label>
+      <input type="radio" name="mode" id="buyer-mode" checked>
+      <label>Застройщик</label>
+      <input type="radio" name="mode" id="developer-mode">
     </div>
   </header>
   
   <main>
-    <!-- Каталог для покупателя -->
     <section id="buyer-section">
-      <h2>Выберите блок</h2>
-      <div class="blocks"></div>
-      
-      <h2>Выберите этаж</h2>
-      <div class="floors"></div>
-      
-      <h2>Выберите квартиру</h2>
-      <div class="apartments"></div>
+      <h2>Вы в режиме покупателя</h2>
     </section>
     
-    <!-- Панель для застройщика -->
     <section id="developer-section" style="display:none;">
-      <h2>Панель управления застройщика</h2>
-      <label>Загрузить изображение блоков:</label>
-      <input type="file" id="upload-blocks" multiple><br>
-      <label>Загрузить планировку этажа:</label>
-      <input type="file" id="upload-floors" multiple><br>
-      <label>Загрузить планировки квартир:</label>
-      <input type="file" id="upload-apartments" multiple><br>
+      <h2>Вы в режиме застройщика</h2>
     </section>
   </main>
 
-  <footer>
-    <p>Разработано для демонстрации смарт-каталога</p>
-  </footer>
+  <script>
+    const buyerMode = document.getElementById('buyer-mode');
+    const developerMode = document.getElementById('developer-mode');
+    const buyerSection = document.getElementById('buyer-section');
+    const developerSection = document.getElementById('developer-section');
 
+    buyerMode.addEventListener('click', () => {
+      buyerSection.style.display = 'block';
+      developerSection.style.display = 'none';
+    });
+
+    developerMode.addEventListener('click', () => {
+      buyerSection.style.display = 'none';
+      developerSection.style.display = 'block';
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
