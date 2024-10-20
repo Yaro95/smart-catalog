@@ -3,12 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Catalog</title>
+  <title>Смарт-каталог квартир</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Welcome to Smart Catalog</h1>
-  <p>Here will be your apartment selection functionality.</p>
+  <header>
+    <h1>Смарт-каталог квартир</h1>
+    <p>Выберите блок и этаж, чтобы найти квартиру.</p>
+  </header>
+  
+  <main>
+    <section id="block-selection">
+      <h2>Выберите блок</h2>
+      <div class="blocks">
+        <!-- Добавим блоки динамически с помощью JavaScript -->
+      </div>
+    </section>
+    
+    <section id="floor-selection" style="display:none;">
+      <h2>Выберите этаж</h2>
+      <div class="floors">
+        <!-- Этажи будут отображаться после выбора блока -->
+      </div>
+    </section>
+    
+    <section id="apartment-selection" style="display:none;">
+      <h2>Выберите квартиру</h2>
+      <div class="apartments">
+        <!-- Квартиры будут отображаться после выбора этажа -->
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>Разработано для демонстрации смарт-каталога</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
