@@ -1,18 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const modeSelector = document.getElementById('mode-selector');
+  const modeSwitch = document.getElementById('mode-switch');
   const buyerSection = document.getElementById('buyer-section');
   const developerSection = document.getElementById('developer-section');
 
-  // Функция для переключения режимов
-  modeSelector.addEventListener('change', function() {
-    const selectedMode = modeSelector.value;
-    
-    if (selectedMode === 'developer') {
-      developerSection.style.display = 'block'; // Показать панель застройщика
-      buyerSection.style.display = 'none'; // Скрыть интерфейс покупателя
+  // Переключение между покупателем и застройщиком
+  modeSwitch.addEventListener('change', function() {
+    if (modeSwitch.checked) {
+      buyerSection.style.display = 'none';        // Скрыть интерфейс покупателя
+      developerSection.style.display = 'block';   // Показать панель застройщика
     } else {
-      developerSection.style.display = 'none'; // Скрыть панель застройщика
-      buyerSection.style.display = 'block'; // Показать интерфейс покупателя
+      developerSection.style.display = 'none';    // Скрыть панель застройщика
+      buyerSection.style.display = 'block';       // Показать интерфейс покупателя
     }
   });
 });
