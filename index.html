@@ -1,47 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Смарт-каталог квартир</title>
-   <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Смарт-каталог квартир</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div>
-      <label>Покупатель</label>
-      <input type="radio" name="mode" id="buyer-mode" checked>
-      <label>Застройщик</label>
-      <input type="radio" name="mode" id="developer-mode">
-    </div>
-  </header>
-  
-  <main>
-    <section id="buyer-section">
-      <h2>Вы в режиме покупателя</h2>
-    </section>
-    
-    <section id="developer-section" style="display:none;">
-      <h2>Вы в режиме застройщика</h2>
-    </section>
-  </main>
+    <header>
+        <h1>Смарт-каталог квартир</h1>
+    </header>
 
-  <script>
-    const buyerMode = document.getElementById('buyer-mode');
-    const developerMode = document.getElementById('developer-mode');
-    const buyerSection = document.getElementById('buyer-section');
-    const developerSection = document.getElementById('developer-section');
+    <main>
+        <h2>Выберите этаж</h2>
+        <div id="floors">
+            <!-- Здесь будут добавлены кнопки этажей -->
+        </div>
 
-    buyerMode.addEventListener('click', () => {
-      buyerSection.style.display = 'block';
-      developerSection.style.display = 'none';
-    });
+        <div id="apartments" style="display:none;">
+            <h2>Выберите квартиру</h2>
+            <div id="apartment-list">
+                <!-- Квартиры будут загружены через JavaScript -->
+            </div>
+        </div>
+    </main>
 
-    developerMode.addEventListener('click', () => {
-      buyerSection.style.display = 'none';
-      developerSection.style.display = 'block';
-    });
-  </script>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
