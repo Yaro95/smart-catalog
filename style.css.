@@ -14,11 +14,11 @@ body, html {
 }
 }
 #previewImage{
-    width: 100%;
+    width: 200px;
     height: auto;
     
 }
 #previewVideo{
-height: 100vh;
+height: 100%;
 height: auto;
 }
