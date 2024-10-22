@@ -1,8 +1,7 @@
 document.getElementById('fileUpload').addEventListener('change', function (event) {
   const file = event.target.files[0]; // Получаем загруженный файл
 
-  document.getElementById('previewImage').style.display = 'block';
-  document.getElementById('previewVideo').style.display = 'block';
+
   if (file) {
     const fileType = file.type; // Определяем тип файла
     const reader = new FileReader();
