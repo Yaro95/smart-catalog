@@ -14,15 +14,18 @@
   <h1>Загрузить изображение</h1>
 
   <!-- Форма для загрузки изображения -->
-  <form action="/upload" method="post" enctype="multipart/form-data">
-    <label for="fileUpload">Выберите изображение:</label>
-    <input type="file" name="fileUpload" id="fileUpload" accept="image/*">
+ <form id="uploadForm" enctype="multipart/form-data">
+    <label for="fileUpload">Выберите файл:</label>
+    <input type="file" name="fileUpload" id="fileUpload" accept="image/*,video/*">
     <button type="submit">Загрузить</button>
   </form>
 
   <h2>Предварительный просмотр:</h2>
   <img id="preview" src="#" alt="Предварительный просмотр изображения" style="max-width: 500px; display: none;"/>
-
+   <!-- Для видео -->
+  <video id="previewVideo" controls style="max-width: 500px; display: none;">
+    Ваш браузер не поддерживает видео теги.
+  </video>
   
 <!-- Подключение JS -->
 <script src="script.js"></script>
