@@ -1,30 +1,106 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Смарт-каталог квартир</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta name="description" content="Смарт-каталог квартир. Выбирайте квартиру онлайн и получите лучшие условия.">
+  <meta name="keywords" content="квартиры, новостройки, купить квартиру, планировки, ипотека">
+  <title>Смарт-каталог квартир</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Подключаем Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXX-Y');
+  </script>
 </head>
 <body>
-    <header>
-        <h1>Смарт-каталог квартир</h1>
-    </header>
+  <!-- Главное меню навигации -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#about">О проекте</a></li>
+        <li><a href="#catalog">Выбрать квартиру</a></li>
+        <li><a href="#promo">Акции</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <h2>Выберите этаж</h2>
-        <div id="floors">
-            <!-- Здесь будут добавлены кнопки этажей -->
+  <!-- Основной контент -->
+  <main>
+    <!-- Описание проекта -->
+    <section id="about">
+      <h1>О проекте</h1>
+      <p>Здесь будет описание проекта, инфраструктуры и других важных аспектов жилого комплекса.</p>
+    </section>
+
+    <!-- Каталог квартир -->
+    <section id="catalog">
+      <h2>Каталог квартир</h2>
+      <div class="blocks">
+        <!-- Пример динамической загрузки блоков -->
+        <div class="block" data-block="1">Блок A</div>
+        <div class="block" data-block="2">Блок B</div>
+        <div class="block" data-block="3">Блок C</div>
+      </div>
+
+      <div id="floor-selection" style="display: none;">
+        <h3>Выберите этаж</h3>
+        <div class="floors">
+          <!-- Этажи будут динамически добавлены с помощью JavaScript -->
         </div>
+      </div>
 
-        <div id="apartments" style="display:none;">
-            <h2>Выберите квартиру</h2>
-            <div id="apartment-list">
-                <!-- Квартиры будут загружены через JavaScript -->
-            </div>
+      <div id="apartment-selection" style="display: none;">
+        <h3>Выберите квартиру</h3>
+        <div class="apartments">
+          <!-- Квартиры будут динамически добавлены с помощью JavaScript -->
         </div>
-    </main>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- Акции и предложения -->
+    <section id="promo">
+      <h2>Акции</h2>
+      <div class="promo-block">
+        <h3>Ипотека от 3,5%</h3>
+        <p>До 31.12.2024. Успей купить по выгодным условиям!</p>
+        <a href="#promo-details">Подробнее</a>
+      </div>
+      <div class="promo-block">
+        <h3>Скидка на квартиры 5%</h3>
+        <p>До 31.10.2024. Успейте получить скидку.</p>
+        <a href="#promo-details">Подробнее</a>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts">
+      <h2>Контакты</h2>
+      <p>Телефон: <a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
+      <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+    </section>
+  </main>
+
+  <!-- Форма для обратного звонка -->
+  <div id="callback-form" style="display: none;">
+    <h2>Заказать звонок</h2>
+    <form>
+      <label>Ваше имя</label>
+      <input type="text" name="name" required>
+
+      <label>Ваш телефон</label>
+      <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__">
+
+      <button type="submit">Заказать звонок</button>
+    </form>
+  </div>
+
+  <!-- Подключение JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
