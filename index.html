@@ -2,13 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Загрузка изображения</title>
   <!-- Подключение CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<body class="fade">
+  <h1>Загрузить изображение</h1>
 
+  <!-- Форма для загрузки изображения -->
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="fileUpload">Выберите изображение:</label>
+    <input type="file" name="fileUpload" id="fileUpload" accept="image/*">
+    <button type="submit">Загрузить</button>
+  </form>
   
 <!-- Подключение JS -->
 <script src="script.js"></script>
