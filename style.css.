@@ -6,11 +6,11 @@ body, html {
   height: 100%;
 }
 #previewImage{
-    max-width: 100vw;
-    height: auto;
+    width: 50vw;
+    height: 50vw;
     
 }
 #previewVideo{
-max-height: 100vh;
+height: 100vh;
 height: auto;
 }
