@@ -1,4 +1,8 @@
-
+/*
+px - четкие пораметры изоброжения.
+vh - привязано к высоте окна браузера. 
+% - привязано к высоте родительского элемента.
+*/
 body, html {
   margin: 0;
   padding: 0;
@@ -6,8 +10,8 @@ body, html {
   height: 100%;
 }
 #previewImage{
-    width: auto;
-    height: auto;
+    width: 800 px;
+    height: 400 px;
     
 }
 #previewVideo{
