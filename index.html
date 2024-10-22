@@ -2,32 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Загрузка изображения</title>
   <!-- Подключение CSS -->
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
   <h1>Загрузить изображение</h1>
 
   <!-- Форма для загрузки изображения -->
- <form id="uploadForm" enctype="multipart/form-data">
+  <form id="uploadForm" enctype="multipart/form-data">
     <label for="fileUpload">Выберите файл:</label>
     <input type="file" name="fileUpload" id="fileUpload" accept="image/*,video/*">
     <button type="submit">Загрузить</button>
   </form>
 
- <h2>Предварительный просмотр:</h2>
-<img id="previewImage" src="#" alt="Предварительный просмотр изображения"/>
-<!-- Для видео -->
-<video id="previewVideo">
-  Ваш браузер не поддерживает видео теги.
-</video>
+  <h2>Предварительный просмотр:</h2>
+  <img id="previewImage" src="#" alt="Предварительный просмотр изображения" style="display: none;">
+  <!-- Для видео -->
+  <video id="previewVideo" controls style="display: none;">
+    Ваш браузер не поддерживает видео теги.
+  </video>
   
-<!-- Подключение JS -->
-<script src="script.js"></script>
+  <!-- Подключение JS -->
+  <script src="script.js"></script>
 </body>
 </html>
