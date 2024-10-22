@@ -6,8 +6,8 @@ body, html {
   height: 100%;
 }
 #previewImage{
-    width: 100vw;
-    height: auto;
+    width: 50vw;
+    height: 50vw;
     
 }
 #previewVideo{
