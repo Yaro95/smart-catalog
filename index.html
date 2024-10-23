@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>360 Картина с Меню и Описанием</title>
+  <title>Слайд-шоу с Меню и Описанием</title>
 
   <style>
     body, html {
@@ -23,10 +23,9 @@
       height: 100vh;
     }
 
-    iframe {
+    img {
       width: 100vw;
       height: 100vh;
-      border: none;
       object-fit: cover;
     }
 
@@ -41,6 +40,7 @@
       background-color: rgba(0, 0, 0, 0.5);
       padding: 10px;
       border-radius: 5px;
+      display: none;
     }
 
     #menu a {
@@ -64,95 +64,102 @@
       text-align: center;
     }
 
-    /* Абсолютное позиционирование карты по центру */
-    #map {
+    #backButton {
       position: absolute;
-      top: 50%; 
+      bottom: 10%;
       left: 50%;
-      width: 90vw; /* Устанавливаем размеры карты */
-      height: 80vh;
-      transform: translate(-50%, -50%); /* Центрируем карту по горизонтали и вертикали */
-      z-index: 11; /* Z-index выше, чем у остальных элементов */
-      display: none; /* По умолчанию карта скрыта */
-      border: 2px solid white;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: white;
+      color: black;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    #prev, #next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.5);
+      color: black;
+      cursor: pointer;
+      font-size: 24px;
+      border: none;
+    }
+
+    #prev {
+      left: 10px;
+    }
+
+    #next {
+      right: 10px;
     }
   </style>
 </head>
 <body>
 
   <div id="imageContainer">
-    <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
+    <img id="slideshowImage" src="image1.jpg" alt="Слайд 1">
 
     <div id="menu">
       <a href="#home" id="homeLink">ГЛАВНАЯ</a>
-      <a href="#about" id="aboutLink">О КОМПЛЕКСЕ</a>
+      <a href="#about" id="aboutLink">О КОМПАНИИ</a>
       <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a>
-      <a href="#contact">КОНТАКТЫ</a>
+      <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a>
     </div>
 
     <div id="complexDescription">
-      ЖК Рассвет премиум класса
-      Вставьте сюда текст 
+      Компания ISM и т.д.
     </div>
 
-    <div id="map"></div>
+    <button id="prev">&lt;</button> <!-- Кнопка предыдущий слайд -->
+    <button id="next">&gt;</button> <!-- Кнопка следующий слайд -->
   </div>
 
-  <script src="https://api-maps.yandex.ru/2.1/?apikey=ТВОЙ_API_КЛЮЧ&lang=ru_RU"></script>
   <script>
-    // Описание комплекса
+    const images = ['image1.jpg', 'image2.jpg', 'image3.jpg']; // Массив с изображениями
+    let currentIndex = 0;
+    let slideshowInterval;
+
+    const slideshowImage = document.getElementById('slideshowImage');
+    const menu = document.getElementById('menu');
     const complexDescription = document.getElementById('complexDescription');
-    const aboutLink = document.getElementById('aboutLink');
-    const homeLink = document.getElementById('homeLink');
-    const map = document.getElementById('map');
-    let myMap; // Переменная для карты
+    const backButton = document.getElementById('backButton');
 
-    // При клике на "О КОМПЛЕКСЕ"
-    aboutLink.addEventListener('click', function(event) {
-      event.preventDefault();
-      complexDescription.style.display = 'block'; // Показываем описание
-      map.style.display = 'none'; // Скрываем карту
-    });
-
-    // При клике на "ГЛАВНАЯ"
-    homeLink.addEventListener('click', function(event) {
-      event.preventDefault();
-      complexDescription.style.display = 'none'; // Скрываем описание
-      map.style.display = 'none'; // Скрываем карту
-    });
-
-    // Локация на карте
-    const locationLink = document.getElementById('locationLink');
-    locationLink.addEventListener('click', function(event) {
-      event.preventDefault();
-      complexDescription.style.display = 'none'; // Скрываем описание
-      map.style.display = 'block'; // Показываем карту
-
-      // Если карта уже инициализирована, повторно не инициализируем
-      if (!myMap) {
-        initMap(); // Инициализация карты только один раз
-      }
-    });
-
-    function initMap() {
-      myMap = new ymaps.Map("map", {
-        center: [41.467977, 69.570510], // Координаты для Чирчика
-        zoom: 16
-      });
-
-      const myPlacemark = new ymaps.Placemark([41.467977, 69.570510], {
-        hintContent: 'Местоположение комплекса',
-        balloonContent: 'ЖК Рассвет'
-      }, {
-        // Настройки иконки метки
-        iconLayout: 'default#image',
-        iconImageHref: 'images/1.png', // URL вашей иконки
-        iconImageSize: [30, 42], // Размеры иконки
-        iconImageOffset: [-15, -42] // Смещение иконки
-      });
-
-      myMap.geoObjects.add(myPlacemark);
+    function showNextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      slideshowImage.src = images[currentIndex];
     }
+
+    function showPreviousImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      slideshowImage.src = images[currentIndex];
+    }
+
+    // Автоматическое переключение изображений
+    function startSlideshow() {
+      slideshowInterval = setInterval(showNextImage, 10000);
+    }
+
+    function stopSlideshow() {
+      clearInterval(slideshowInterval);
+    }
+
+    // Старт слайд-шоу
+    startSlideshow();
+
+    // Пауза слайд-шоу при клике
+    slideshowImage.addEventListener('click', function() {
+      stopSlideshow();
+      menu.style.display = 'block'; // Показываем меню при клике
+    });
+
+    // Кнопка следующего и предыдущего слайда
+    document.getElementById('next').addEventListener('click', showNextImage);
+    document.getElementById('prev').addEventListener('click', showPreviousImage);
+
   </script>
 
 </body>
