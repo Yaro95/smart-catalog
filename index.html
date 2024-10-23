@@ -14,7 +14,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: white;  /*#fff - код белого цвета*/
+      background-color: white; /* #fff - код белого цвета */
     }
 
     #imageContainer {
@@ -30,6 +30,16 @@
       object-fit: cover;
       width: calc(100vw - 2cm); /* Отступы по 1 см с каждой стороны по горизонтали */
       height: calc(100vh - 6cm); /* Отступы по 3 см с каждой стороны по вертикали */
+    }
+
+    /* Стили для логотипа */
+    #logo {
+      position: absolute;
+      top: 10px; /* Отступ сверху */
+      left: 5cm; /* Отступ слева на 5 см */
+      width: 150px; /* Ширина логотипа, можно изменить */
+      height: auto;
+      z-index: 11; /* Логотип будет сверху всех остальных элементов */
     }
 
     #menu {
@@ -105,6 +115,9 @@
 
   <div id="imageContainer">
     <img id="slideshowImage" src="image1.jpg" alt="Слайд 1">
+
+    <!-- Лого -->
+    <img id="logo" src="images1/1.jpeg" alt="Логотип"> <!-- Добавьте сюда путь к вашему логотипу -->
 
     <div id="menu">
       <a href="#home" id="homeLink">ГЛАВНАЯ</a>
