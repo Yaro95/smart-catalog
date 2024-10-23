@@ -76,10 +76,9 @@
     }
 
     #map {
-      width: 100%;
-      height: 400px; /* Размер карты */
+      width: calc(100vw - 2cm); /* Размер карты такой же, как у изображения */
+      height: calc(100vh - 6cm); /* Размер карты такой же, как у изображения */
       display: none; /* Скрываем карту по умолчанию */
-      margin-top: 20px;
     }
 
     #prev, #next {
@@ -133,9 +132,10 @@
     let slideshowInterval;
 
     const slideshowImage = document.getElementById('slideshowImage');
+    const imageContainer = document.getElementById('imageContainer');
     const menu = document.getElementById('menu');
     const complexDescription = document.getElementById('complexDescription');
-    const backButton = document.getElementById('backButton');
+    const map = document.getElementById('map');
 
     function showNextImage() {
       currentIndex = (currentIndex + 1) % images.length;
@@ -186,8 +186,9 @@
 
     document.getElementById('locationLink').addEventListener('click', function(event) {
       event.preventDefault();
+      imageContainer.style.display = 'none'; // Скрываем слайд-шоу
       initMap(); // Инициализация карты
-      document.getElementById('map').style.display = 'block'; // Показываем карту
+      map.style.display = 'block'; // Показываем карту
     });
   </script>
   <script src="https://api-maps.yandex.ru/2.1/?apikey=ТВОЙ_API_КЛЮЧ&lang=ru_RU"></script>
