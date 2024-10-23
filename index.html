@@ -1,197 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Мета-данные документа -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Слайд-шоу с Меню и Описанием</title>
 
+  <!-- Стили для страницы -->
   <style>
+    /* Общие стили для body и html, задаем размер и цвет фона */
     body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: white;  /*#fff - код белого цвета*/
+      margin: 0; /* Убираем отступы */
+      padding: 0; /* Убираем внутренние отступы */
+      width: 100%; /* Ширина 100% экрана */
+      height: 100%; /* Высота 100% экрана */
+      display: flex; /* Flexbox для выравнивания контента */
+      justify-content: center; /* Центрируем по горизонтали */
+      align-items: center; /* Центрируем по вертикали */
+      background-color: white;  /* Белый фон */
     }
 
+    /* Стили для контейнера изображения */
     #imageContainer {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: relative; /* Позиционируем относительно других элементов */
+      width: 100vw; /* Ширина контейнера на 100% экрана */
+      height: 100vh; /* Высота контейнера на 100% экрана */
+      display: flex; /* Flexbox для выравнивания изображения внутри */
+      justify-content: center; /* Центрируем изображение по горизонтали */
+      align-items: center; /* Центрируем изображение по вертикали */
     }
 
+    /* Стили для изображения слайд-шоу */
     img {
-      object-fit: cover;
-      width: calc(100vw - 2cm); /* Отступы по 1 см с каждой стороны по горизонтали */
-      height: calc(100vh - 6cm); /* Отступы по 3 см с каждой стороны по вертикали */
+      object-fit: cover; /* Изображение адаптируется под контейнер */
+      width: calc(100vw - 2cm); /* Ширина изображения с отступом 1 см */
+      height: calc(100vh - 6cm); /* Высота изображения с отступом 3 см */
     }
 
+    /* Стили для логотипа */
     #logo {
-      position: absolute;
-      top: 10px;
+      position: absolute; /* Позиционируем логотип внутри контейнера */
+      top: 10px; /* Отступ сверху */
       left: 5cm; /* Отступ слева 5 см */
-      width: 150px; /* Указываем размер логотипа */
-      z-index: 20;
+      width: 150px; /* Ширина логотипа */
+      z-index: 20; /* Логотип будет поверх других элементов */
     }
 
+    /* Стили для меню */
     #menu {
-      position: absolute;
-      top: 6%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      color: white;
-      font-size: 18px;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 10px;
-      border-radius: 5px;
+      position: absolute; /* Позиционируем меню поверх контейнера */
+      top: 6%; /* Отступ сверху */
+      left: 50%; /* Центрируем по горизонтали */
+      transform: translate(-50%, -50%); /* Точная центровка */
+      z-index: 10; /* Меню отображается выше карты */
+      color: white; /* Цвет текста в меню */
+      font-size: 18px; /* Размер шрифта */
+      background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+      padding: 10px; /* Внутренние отступы в меню */
+      border-radius: 5px; /* Скругленные углы меню */
     }
 
+    /* Стили для ссылок в меню */
     #menu a {
-      color: white;
-      text-decoration: none;
-      margin-right: 15px;
+      color: white; /* Белый цвет текста */
+      text-decoration: none; /* Убираем подчеркивание */
+      margin-right: 15px; /* Отступ между ссылками */
     }
 
+    /* Стили для блока описания комплекса */
     #complexDescription {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      color: white;
-      font-size: 22px;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 20px;
-      border-radius: 5px;
-      display: none;
-      text-align: center;
+      position: absolute; /* Позиционируем блок внутри контейнера */
+      top: 50%; /* Центрируем по вертикали */
+      left: 50%; /* Центрируем по горизонтали */
+      transform: translate(-50%, -50%); /* Точная центровка */
+      z-index: 10; /* Блок описания поверх карты */
+      color: white; /* Белый текст */
+      font-size: 22px; /* Размер шрифта */
+      background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+      padding: 20px; /* Внутренние отступы */
+      border-radius: 5px; /* Скругленные углы */
+      display: none; /* По умолчанию блок скрыт */
+      text-align: center; /* Текст по центру */
     }
 
+    /* Стили для карты */
     #map {
-      width: calc(100vw - 2cm); /* Размер карты такой же, как у изображения */
-      height: calc(100vh - 6cm); /* Размер карты такой же, как у изображения */
-      display: none; /* Скрываем карту по умолчанию */
-      z-index: 5; /* Задаем z-index ниже чем у меню */
+      width: calc(100vw - 2cm); /* Ширина карты с отступом 1 см */
+      height: calc(100vh - 6cm); /* Высота карты с отступом 3 см */
+      display: none; /* По умолчанию карта скрыта */
+      z-index: 5; /* Карта отображается ниже меню */
     }
 
+    /* Стили для кнопок переключения слайдов */
     #prev, #next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 10px;
-      background-color: rgba(255, 255, 255, 0.5);
-      color: black;
-      cursor: pointer;
-      font-size: 24px;
-      border: none;
+      position: absolute; /* Позиционируем кнопки внутри контейнера */
+      top: 50%; /* Центрируем по вертикали */
+      transform: translateY(-50%); /* Центровка по оси Y */
+      padding: 10px; /* Внутренние отступы */
+      background-color: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый фон */
+      color: black; /* Черный текст */
+      cursor: pointer; /* Курсор указывает на возможность клика */
+      font-size: 24px; /* Размер текста */
+      border: none; /* Без границы */
     }
 
+    /* Стили для кнопки "предыдущий слайд" */
     #prev {
-      left: 10px;
+      left: 10px; /* Отступ слева */
     }
 
+    /* Стили для кнопки "следующий слайд" */
     #next {
-      right: 10px;
+      right: 10px; /* Отступ справа */
     }
   </style>
 </head>
 <body>
 
+  <!-- Контейнер для слайд-шоу -->
   <div id="imageContainer">
-    <img id="slideshowImage" src="image1.jpg" alt="Слайд 1">
+    <img id="slideshowImage" src="image1.jpg" alt="Слайд 1"> <!-- Изображение для слайд-шоу -->
     <img id="logo" src="images1/1.jpg" alt="Логотип"> <!-- Логотип -->
   </div>
 
-  <!-- Меню вынесено отдельно -->
+  <!-- Меню -->
   <div id="menu">
-    <a href="#home" id="homeLink">ГЛАВНАЯ</a>
-    <a href="#about" id="aboutLink">О КОМПАНИИ</a>
-    <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a>
-    <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a>
+    <a href="#home" id="homeLink">ГЛАВНАЯ</a> <!-- Ссылка на главную страницу -->
+    <a href="#about" id="aboutLink">О КОМПАНИИ</a> <!-- Ссылка на раздел "О компании" -->
+    <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a> <!-- Ссылка на раздел с картой -->
+    <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a> <!-- Ссылка на раздел жилых комплексов -->
   </div>
 
+  <!-- Блок с описанием комплекса -->
   <div id="complexDescription">
-    Компания ISM и т.д.
+    Компания ISM и т.д. <!-- Описание компании -->
   </div>
 
-  <button id="prev">&lt;</button> <!-- Кнопка предыдущий слайд -->
-  <button id="next">&gt;</button> <!-- Кнопка следующий слайд -->
+  <!-- Кнопки для переключения слайдов -->
+  <button id="prev">&lt;</button> <!-- Кнопка "предыдущий слайд" -->
+  <button id="next">&gt;</button> <!-- Кнопка "следующий слайд" -->
 
   <!-- Контейнер для карты -->
   <div id="map"></div>
 
+  <!-- Скрипты -->
   <script>
-    const images = ['images1/00000000_CShading_LightMix copyyy.webp', 'images1/123_CShading_LightMix copyy.webp']; // Массив с изображениями
-    let currentIndex = 0;
-    let slideshowInterval;
+    const images = ['images1/00000000_CShading_LightMix copyyy.webp', 'images1/123_CShading_LightMix copyy.webp']; // Массив с изображениями для слайд-шоу
+    let currentIndex = 0; // Текущий индекс слайда
+    let slideshowInterval; // Интервал для слайд-шоу
+    let mapInitialized = false; // Флаг для проверки инициализации карты
 
+    // Элементы DOM
     const slideshowImage = document.getElementById('slideshowImage');
     const imageContainer = document.getElementById('imageContainer');
     const menu = document.getElementById('menu');
     const complexDescription = document.getElementById('complexDescription');
     const map = document.getElementById('map');
 
+    // Функция для показа следующего слайда
     function showNextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      slideshowImage.src = images[currentIndex];
+      currentIndex = (currentIndex + 1) % images.length; // Увеличиваем индекс
+      slideshowImage.src = images[currentIndex]; // Меняем изображение
     }
 
+    // Функция для показа предыдущего слайда
     function showPreviousImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      slideshowImage.src = images[currentIndex];
+      currentIndex = (currentIndex - 1 + images.length) % images.length; // Уменьшаем индекс
+      slideshowImage.src = images[currentIndex]; // Меняем изображение
     }
 
-    // Автоматическое переключение изображений
+    // Автоматическое переключение изображений (слайд-шоу)
     function startSlideshow() {
-      slideshowInterval = setInterval(showNextImage, 10000);
+      slideshowInterval = setInterval(showNextImage, 10000); // Интервал в 10 секунд
     }
 
+    // Остановка слайд-шоу
     function stopSlideshow() {
-      clearInterval(slideshowInterval);
+      clearInterval(slideshowInterval); // Останавливаем интервал
     }
 
-    // Старт слайд-шоу
+    // Старт слайд-шоу при загрузке страницы
     startSlideshow();
 
-    // Пауза слайд-шоу при клике
+    // Остановка слайд-шоу при клике на изображение
     slideshowImage.addEventListener('click', function() {
-      stopSlideshow();
-      menu.style.display = 'block'; // Показываем меню при клике
+      stopSlideshow(); // Останавливаем слайд-шоу
+      menu.style.display = 'block'; // Показываем меню
     });
 
-    // Кнопка следующего и предыдущего слайда
-    document.getElementById('next').addEventListener('click', showNextImage);
-    document.getElementById('prev').addEventListener('click', showPreviousImage);
+    // События для кнопок переключения слайдов
+    document.getElementById('next').addEventListener('click', showNextImage); // Показ следующего слайда
+    document.getElementById('prev').addEventListener('click', showPreviousImage); // Показ предыдущего слайда
 
-    // API Яндекс Карт
+    // Инициализация Яндекс.Карт
     function initMap() {
-      const myMap = new ymaps.Map("map", {
-        center: [41.467977, 69.570510], // Координаты для Чирчика
-        zoom: 16
-      });
+      if (!mapInitialized) { // Проверяем, была ли уже инициализирована карта
+        const myMap = new ymaps.Map("map", {
+          center: [41.467977, 69.570510], // Координаты для Чирчика
+          zoom: 16 // Уровень масштабирования карты
+        });
 
-      const myPlacemark = new ymaps.Placemark([41.467977, 69.570510], {
-        hintContent: 'Местоположение комплекса',
-        balloonContent: 'ЖК Рассвет'
-      });
+        const myPlacemark = new ymaps.Placemark([41.467977, 69.570510], {
+          hintContent: 'Местоположение комплекса',
+          balloonContent: 'ЖК Рассвет' // Текст в информационном окне метки
+        });
 
-      myMap.geoObjects.add(myPlacemark);
+        myMap.geoObjects.add(myPlacemark); // Добавляем метку на карту
+        mapInitialized = true; // Устанавливаем флаг после инициализации карты
+      }
     }
 
+    // Событие на клик по "РАСПОЛОЖЕНИЕ", скрываем слайд-шоу и показываем карту
     document.getElementById('locationLink').addEventListener('click', function(event) {
       event.preventDefault();
       imageContainer.style.display = 'none'; // Скрываем слайд-шоу
-      initMap(); // Инициализация карты
       map.style.display = 'block'; // Показываем карту
+      initMap(); // Инициализация карты
+    });
+
+    // Событие на клик по "ГЛАВНАЯ", скрываем карту и возвращаем слайд-шоу
+    document.getElementById('homeLink').addEventListener('click', function(event) {
+      event.preventDefault();
+      map.style.display = 'none'; // Скрываем карту
+      imageContainer.style.display = 'flex'; // Показываем слайд-шоу
     });
   </script>
+
+  <!-- Подключаем API Яндекс.Карт -->
   <script src="https://api-maps.yandex.ru/2.1/?apikey=ТВОЙ_API_КЛЮЧ&lang=ru_RU"></script>
 </body>
 </html>
