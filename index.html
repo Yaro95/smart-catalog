@@ -34,6 +34,7 @@
       position: absolute;
       top: 10px;
       left: 10px;
+      z-index: 10; /* Чтобы меню отображалось поверх всего */
       color: white;
       font-size: 18px;
       background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
@@ -68,9 +69,13 @@
     const imageContainer = document.getElementById('imageContainer');
     const menu = document.getElementById('menu');
 
-    // При клике на изображение показываем меню
+    // При клике на контейнер с изображением показываем меню
     imageContainer.addEventListener('click', function() {
-      menu.style.display = 'block'; // Показываем меню при клике
+      if (menu.style.display === 'none' || menu.style.display === '') {
+        menu.style.display = 'block'; // Показываем меню
+      } else {
+        menu.style.display = 'none'; // Скрываем меню, если оно уже показано
+      }
     });
   </script>
 </body>
