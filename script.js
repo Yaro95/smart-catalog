@@ -10,7 +10,7 @@ function initMap() {
     }, {
         // Настройки иконки метки
         iconLayout: 'default#image',
-        iconImageHref: 'https://example.com/my-custom-icon.png', // URL вашей иконки
+        iconImageHref: 'images/1.png', // URL вашей иконки
         iconImageSize: [30, 42], // Размеры иконки
         iconImageOffset: [-15, -42] // Смещение иконки
     });
