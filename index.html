@@ -14,7 +14,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: white; /* #fff - код белого цвета */
+      background-color: white;  /*#fff - код белого цвета*/
     }
 
     #imageContainer {
@@ -32,14 +32,12 @@
       height: calc(100vh - 6cm); /* Отступы по 3 см с каждой стороны по вертикали */
     }
 
-    /* Стили для логотипа */
     #logo {
       position: absolute;
-      top: 10px; /* Отступ сверху */
-      left: 5cm; /* Отступ слева на 5 см */
-      width: 150px; /* Ширина логотипа, можно изменить */
-      height: auto;
-      z-index: 11; /* Логотип будет сверху всех остальных элементов */
+      top: 10px;
+      left: 5cm; /* Отступ слева 5 см */
+      width: 150px; /* Указываем размер логотипа */
+      z-index: 20;
     }
 
     #menu {
@@ -77,17 +75,11 @@
       text-align: center;
     }
 
-    #backButton {
-      position: absolute;
-      bottom: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px 20px;
-      background-color: white;
-      color: black;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
+    #map {
+      width: 100%;
+      height: 400px; /* Размер карты */
+      display: none; /* Скрываем карту по умолчанию */
+      margin-top: 20px;
     }
 
     #prev, #next {
@@ -115,9 +107,7 @@
 
   <div id="imageContainer">
     <img id="slideshowImage" src="image1.jpg" alt="Слайд 1">
-
-    <!-- Лого -->
-    <img id="logo" src="images1/1.jpeg" alt="Логотип"> <!-- Добавьте сюда путь к вашему логотипу -->
+    <img id="logo" src="logo.jpg" alt="Логотип"> <!-- Логотип -->
 
     <div id="menu">
       <a href="#home" id="homeLink">ГЛАВНАЯ</a>
@@ -133,6 +123,9 @@
     <button id="prev">&lt;</button> <!-- Кнопка предыдущий слайд -->
     <button id="next">&gt;</button> <!-- Кнопка следующий слайд -->
   </div>
+
+  <!-- Контейнер для карты -->
+  <div id="map"></div>
 
   <script>
     const images = ['images1/00000000_CShading_LightMix copyyy.jpeg', 'images1/123_CShading_LightMix copyy.jpeg']; // Массив с изображениями
@@ -176,7 +169,27 @@
     document.getElementById('next').addEventListener('click', showNextImage);
     document.getElementById('prev').addEventListener('click', showPreviousImage);
 
-  </script>
+    // API Яндекс Карт
+    function initMap() {
+      const myMap = new ymaps.Map("map", {
+        center: [41.467977, 69.570510], // Координаты для Чирчика
+        zoom: 16
+      });
 
+      const myPlacemark = new ymaps.Placemark([41.467977, 69.570510], {
+        hintContent: 'Местоположение комплекса',
+        balloonContent: 'ЖК Рассвет'
+      });
+
+      myMap.geoObjects.add(myPlacemark);
+    }
+
+    document.getElementById('locationLink').addEventListener('click', function(event) {
+      event.preventDefault();
+      initMap(); // Инициализация карты
+      document.getElementById('map').style.display = 'block'; // Показываем карту
+    });
+  </script>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=ТВОЙ_API_КЛЮЧ&lang=ru_RU"></script>
 </body>
 </html>
