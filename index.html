@@ -133,7 +133,8 @@
     <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a> <!-- Ссылка на раздел жилых комплексов -->
   </div>
 
-  <!-- Блок с описанием комплекса -->
+  <a href="#about" id="aboutLink">О КОМПАНИИ</a>
+  <!-- Блок с описанием о компании -->
   <div id="complexDescription">
     Компания ISM и т.д. <!-- Описание компании -->
   </div>
@@ -212,6 +213,13 @@
       }
     }
 
+  document.getElementById('aboutLink').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('complexDescription').style.display = 'block'; // Показываем описание
+    document.getElementById('map').style.display = 'none'; // Скрываем карту
+    document.getElementById('imageContainer').style.display = 'none'; // Скрываем слайд-шоу
+    });
+    
     // Событие на клик по "РАСПОЛОЖЕНИЕ", скрываем слайд-шоу и показываем карту
     document.getElementById('locationLink').addEventListener('click', function(event) {
       event.preventDefault();
