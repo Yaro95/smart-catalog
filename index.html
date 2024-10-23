@@ -29,6 +29,17 @@
       object-fit: cover;
     }
 
+    /* Прозрачный слой для перехвата кликов */
+    #clickLayer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 5;
+      background: rgba(0, 0, 0, 0); /* Прозрачный фон */
+    }
+
     /* Меню поверх */
     #menu {
       position: absolute;
@@ -57,6 +68,8 @@
   <div id="imageContainer">
     <!-- Встроенный Kuula 360 -->
     <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
+    <!-- Прозрачный слой для кликов -->
+    <div id="clickLayer"></div>
     <!-- Меню -->
     <div id="menu">
       <a href="#home">Главная</a>
@@ -66,11 +79,11 @@
   </div>
 
   <script>
-    const imageContainer = document.getElementById('imageContainer');
+    const clickLayer = document.getElementById('clickLayer');
     const menu = document.getElementById('menu');
 
-    // При клике на контейнер с изображением показываем меню
-    imageContainer.addEventListener('click', function() {
+    // При клике на прозрачный слой показываем меню
+    clickLayer.addEventListener('click', function() {
       if (menu.style.display === 'none' || menu.style.display === '') {
         menu.style.display = 'block'; // Показываем меню
       } else {
