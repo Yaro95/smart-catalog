@@ -8,68 +8,83 @@
   <style>
     /* Общие стили для body и html */
     body, html {
-      margin: 0; /* Убираем отступы */
-      padding: 0; /* Убираем внутренние отступы */
-      width: 100%; /* Устанавливаем ширину на 100% */
-      height: 100%; /* Устанавливаем высоту на 100% */
-      display: flex; /* Flexbox для центрирования контента */
-      justify-content: center; /* Центрируем контент по горизонтали */
-      align-items: center; /* Центрируем контент по вертикали */
-      background-color: #000; /* Черный фон */
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
     }
 
     /* Стили для контейнера изображения */
     #imageContainer {
-      position: relative; /* Позиционирование относительно контейнера */
-      width: 100vw; /* Устанавливаем ширину на весь экран */
-      height: 100vh; /* Устанавливаем высоту на весь экран */
+      position: relative;
+      width: 100vw;
+      height: 100vh;
     }
 
     /* Стили для iframe (Kuula 360) */
     iframe {
-      width: 100vw; /* Ширина на всю ширину экрана */
-      height: 100vh; /* Высота на всю высоту экрана */
-      border: none; /* Убираем границу */
-      object-fit: cover; /* Заполняем контейнер */
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      object-fit: cover;
     }
 
     /* Стили для меню */
     #menu {
-      position: absolute; /* Позиционирование относительно контейнера */
-      top: 6%; /* Позиция меню сверху */
-      left: 50%; /* Центрируем по горизонтали */
-      transform: translate(-50%, -50%); /* Точная центровка */
-      z-index: 10; /* Меню будет отображаться поверх всего */
-      color: white; /* Белый цвет текста */
-      font-size: 18px; /* Размер текста */
-      background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
-      padding: 10px; /* Отступы внутри меню */
-      border-radius: 5px; /* Скругленные углы */
+      position: absolute;
+      top: 6%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      color: white;
+      font-size: 18px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
     }
 
     /* Стили для ссылок в меню */
     #menu a {
-      color: white; /* Белый цвет текста */
-      text-decoration: none; /* Убираем подчеркивание */
-      margin-right: 15px; /* Отступ между ссылками */
+      color: white;
+      text-decoration: none;
+      margin-right: 15px;
     }
 
     /* Стили для блока с описанием комплекса */
     #complexDescription {
-      position: absolute; /* Позиционирование относительно контейнера */
-      top: 50%; /* Центрируем по вертикали */
-      left: 50%; /* Центрируем по горизонтали */
-      transform: translate(-50%, -50%); /* Точная центровка */
-      z-index: 10; /* Отображается поверх изображения */
-      color: white; /* Белый цвет текста */
-      font-size: 22px; /* Размер текста */
-      background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
-      padding: 20px; /* Отступы внутри блока */
-      border-radius: 5px; /* Скругленные углы */
-      display: none; /* Скрыт по умолчанию */
-      text-align: center; /* Текст по центру */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      color: white;
+      font-size: 22px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 5px;
+      display: none;
+      text-align: center;
+    }
+
+    /* Стили для карты */
+    #map {
+      width: 80vw; /* Ширина карты */
+      height: 80vh; /* Высота карты */
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 10;
+      display: none; /* Карта скрыта по умолчанию */
     }
   </style>
+
+  <!-- Подключаем API Яндекс.Карт -->
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU"></script>
 </head>
 <body>
 
@@ -83,15 +98,18 @@
       <a href="#home">ГЛАВНАЯ</a>
       <a href="#about" id="aboutLink">О КОМПЛЕКСЕ</a>
       <a href="#apartment">ПЛАНИРОВКИ</a>
-      <a href="#location">РАСПОЛОЖЕНИЯ</a>
+      <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a>
       <a href="#contact">КОНТАКТЫ</a>
     </div>
 
     <!-- Описание о комплексе -->
     <div id="complexDescription">
       ЖК Рассвет премиум класса
-      Вставте сюда текст 
+      Вставьте сюда текст 
     </div>
+
+    <!-- Блок для карты -->
+    <div id="map"></div>
   </div>
 
   <script>
@@ -105,6 +123,35 @@
     aboutLink.addEventListener('click', function(event) {
       event.preventDefault(); // Отменяем стандартное поведение ссылки
       complexDescription.style.display = 'block'; // Показываем описание
+      map.style.display = 'none'; // Скрываем карту, если она открыта
+    });
+
+    // Получаем ссылку "РАСПОЛОЖЕНИЕ"
+    const locationLink = document.getElementById('locationLink');
+    const map = document.getElementById('map');
+
+    // Инициализация карты Яндекс.Карт
+    function initMap() {
+      const myMap = new ymaps.Map("map", {
+        center: [55.7558, 37.6173], // Координаты (Москва, в качестве примера)
+        zoom: 12
+      });
+
+      // Добавление метки
+      const myPlacemark = new ymaps.Placemark([55.7558, 37.6173], {
+        hintContent: 'Местоположение комплекса',
+        balloonContent: 'ЖК Рассвет'
+      });
+
+      myMap.geoObjects.add(myPlacemark);
+    }
+
+    // При клике на ссылку "РАСПОЛОЖЕНИЕ" отображаем карту
+    locationLink.addEventListener('click', function(event) {
+      event.preventDefault(); // Отменяем стандартное поведение ссылки
+      map.style.display = 'block'; // Показываем карту
+      complexDescription.style.display = 'none'; // Скрываем описание, если оно открыто
+      ymaps.ready(initMap); // Инициализируем карту при клике
     });
   </script>
 
