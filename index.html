@@ -213,12 +213,37 @@
       }
     }
 
-  document.getElementById('aboutLink').addEventListener('click', function(event) {
-    event.preventDefault();
-    document.getElementById('complexDescription').style.display = 'block'; // Показываем описание
-    document.getElementById('map').style.display = 'none'; // Скрываем карту
-    document.getElementById('imageContainer').style.display = 'none'; // Скрываем слайд-шоу
-    });
+  // Добавляем обработчик для ссылки "О компании"
+document.getElementById('aboutLink').addEventListener('click', function(event) {
+  event.preventDefault();
+  document.getElementById('complexDescription').style.display = 'block'; // Показываем описание
+  document.getElementById('map').style.display = 'none'; // Скрываем карту
+  document.getElementById('imageContainer').style.display = 'none'; // Скрываем слайд-шоу
+});
+
+// Добавляем обработчики для других ссылок в меню, чтобы скрывать блок "О компании"
+document.getElementById('homeLink').addEventListener('click', function(event) {
+  event.preventDefault();
+  document.getElementById('complexDescription').style.display = 'none'; // Скрываем описание
+  document.getElementById('map').style.display = 'none'; // Скрываем карту
+  document.getElementById('imageContainer').style.display = 'flex'; // Показываем слайд-шоу
+});
+
+document.getElementById('locationLink').addEventListener('click', function(event) {
+  event.preventDefault();
+  document.getElementById('complexDescription').style.display = 'none'; // Скрываем описание
+  document.getElementById('imageContainer').style.display = 'none'; // Скрываем слайд-шоу
+  document.getElementById('map').style.display = 'block'; // Показываем карту
+  initMap(); // Инициализация карты
+});
+
+document.getElementById('residentialLink').addEventListener('click', function(event) {
+  event.preventDefault();
+  document.getElementById('complexDescription').style.display = 'none'; // Скрываем описание
+  document.getElementById('map').style.display = 'none'; // Скрываем карту
+  document.getElementById('imageContainer').style.display = 'none'; // Скрываем слайд-шоу
+  // Дополнительная логика для жилых комплексов
+});
     
     // Событие на клик по "РАСПОЛОЖЕНИЕ", скрываем слайд-шоу и показываем карту
     document.getElementById('locationLink').addEventListener('click', function(event) {
