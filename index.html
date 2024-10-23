@@ -84,7 +84,7 @@
     <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
 
     <div id="menu">
-      <a href="#home">ГЛАВНАЯ</a>
+      <a href="#home" id="homeLink">ГЛАВНАЯ</a>
       <a href="#about" id="aboutLink">О КОМПЛЕКСЕ</a>
       <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a>
       <a href="#contact">КОНТАКТЫ</a>
@@ -103,26 +103,39 @@
     // Описание комплекса
     const complexDescription = document.getElementById('complexDescription');
     const aboutLink = document.getElementById('aboutLink');
+    const homeLink = document.getElementById('homeLink');
+    const map = document.getElementById('map');
+    let myMap; // Переменная для карты
 
     // При клике на "О КОМПЛЕКСЕ"
     aboutLink.addEventListener('click', function(event) {
       event.preventDefault();
-      complexDescription.style.display = 'block';
+      complexDescription.style.display = 'block'; // Показываем описание
+      map.style.display = 'none'; // Скрываем карту
+    });
+
+    // При клике на "ГЛАВНАЯ"
+    homeLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      complexDescription.style.display = 'none'; // Скрываем описание
+      map.style.display = 'none'; // Скрываем карту
     });
 
     // Локация на карте
     const locationLink = document.getElementById('locationLink');
-    const map = document.getElementById('map');
-
     locationLink.addEventListener('click', function(event) {
       event.preventDefault();
-      complexDescription.style.display = 'none';
+      complexDescription.style.display = 'none'; // Скрываем описание
       map.style.display = 'block'; // Показываем карту
-      initMap(); // Инициализация карты
+
+      // Если карта уже инициализирована, повторно не инициализируем
+      if (!myMap) {
+        initMap(); // Инициализация карты только один раз
+      }
     });
 
     function initMap() {
-      const myMap = new ymaps.Map("map", {
+      myMap = new ymaps.Map("map", {
         center: [41.467977, 69.570510], // Координаты для Чирчика
         zoom: 16
       });
@@ -130,29 +143,16 @@
       const myPlacemark = new ymaps.Placemark([41.467977, 69.570510], {
         hintContent: 'Местоположение комплекса',
         balloonContent: 'ЖК Рассвет'
-      });
-
-      myMap.geoObjects.add(myPlacemark);
-    }
-    function initMap() {
-    const myMap = new ymaps.Map("map", {
-        center: [41.467977, 69.570510],
-        zoom: 16
-    });
-
-    const myPlacemark = new ymaps.Placemark([41.467977, 69.570510], {
-        hintContent: 'Местоположение комплекса',
-        balloonContent: 'ЖК Рассвет'
-    }, {
+      }, {
         // Настройки иконки метки
         iconLayout: 'default#image',
         iconImageHref: 'images/1.png', // URL вашей иконки
         iconImageSize: [30, 42], // Размеры иконки
         iconImageOffset: [-15, -42] // Смещение иконки
-    });
+      });
 
-    myMap.geoObjects.add(myPlacemark);
-}
+      myMap.geoObjects.add(myPlacemark);
+    }
   </script>
 
 </body>
