@@ -6,7 +6,6 @@
   <title>360 Картина с Меню и Описанием</title>
 
   <style>
-    /* Общие стили для body и html */
     body, html {
       margin: 0;
       padding: 0;
@@ -18,14 +17,12 @@
       background-color: #000;
     }
 
-    /* Стили для контейнера изображения */
     #imageContainer {
       position: relative;
       width: 100vw;
       height: 100vh;
     }
 
-    /* Стили для iframe (Kuula 360) */
     iframe {
       width: 100vw;
       height: 100vh;
@@ -33,7 +30,6 @@
       object-fit: cover;
     }
 
-    /* Стили для меню */
     #menu {
       position: absolute;
       top: 6%;
@@ -47,14 +43,12 @@
       border-radius: 5px;
     }
 
-    /* Стили для ссылок в меню */
     #menu a {
       color: white;
       text-decoration: none;
       margin-right: 15px;
     }
 
-    /* Стили для блока с описанием комплекса */
     #complexDescription {
       position: absolute;
       top: 50%;
@@ -70,89 +64,76 @@
       text-align: center;
     }
 
-    /* Стили для карты */
+    /* Абсолютное позиционирование карты по центру */
     #map {
-      width: 80vw; /* Ширина карты */
-      height: 80vh; /* Высота карты */
       position: absolute;
-      top: 10%;
+      top: 50%; 
       left: 50%;
-      transform: translate(-50%, 0);
-      z-index: 10;
-      display: none; /* Карта скрыта по умолчанию */
+      width: 90vw; /* Устанавливаем размеры карты */
+      height: 90vh;
+      transform: translate(-50%, -50%); /* Центрируем карту по горизонтали и вертикали */
+      z-index: 11; /* Z-index выше, чем у остальных элементов */
+      display: none; /* По умолчанию карта скрыта */
+      border: 2px solid white;
     }
   </style>
-
-  <!-- Подключаем API Яндекс.Карт -->
-  <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU"></script>
 </head>
 <body>
 
-  <!-- Контейнер для Kuula 360 изображения -->
   <div id="imageContainer">
-    <!-- Встроенный Kuula 360 -->
     <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
 
-    <!-- Меню, которое отображается сразу -->
     <div id="menu">
       <a href="#home">ГЛАВНАЯ</a>
       <a href="#about" id="aboutLink">О КОМПЛЕКСЕ</a>
-      <a href="#apartment">ПЛАНИРОВКИ</a>
       <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a>
       <a href="#contact">КОНТАКТЫ</a>
     </div>
 
-    <!-- Описание о комплексе -->
     <div id="complexDescription">
       ЖК Рассвет премиум класса
       Вставьте сюда текст 
     </div>
 
-    <!-- Блок для карты -->
     <div id="map"></div>
   </div>
 
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=ТВОЙ_API_КЛЮЧ&lang=ru_RU"></script>
   <script>
-    // Получаем элемент с описанием комплекса
+    // Описание комплекса
     const complexDescription = document.getElementById('complexDescription');
-
-    // Получаем ссылку "О КОМПЛЕКСЕ"
     const aboutLink = document.getElementById('aboutLink');
 
-    // При клике на ссылку показываем блок с описанием
+    // При клике на "О КОМПЛЕКСЕ"
     aboutLink.addEventListener('click', function(event) {
-      event.preventDefault(); // Отменяем стандартное поведение ссылки
-      complexDescription.style.display = 'block'; // Показываем описание
-      map.style.display = 'none'; // Скрываем карту, если она открыта
+      event.preventDefault();
+      complexDescription.style.display = 'block';
     });
 
-    // Получаем ссылку "РАСПОЛОЖЕНИЕ"
+    // Локация на карте
     const locationLink = document.getElementById('locationLink');
     const map = document.getElementById('map');
 
-    // Инициализация карты Яндекс.Карт
+    locationLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      complexDescription.style.display = 'none';
+      map.style.display = 'block'; // Показываем карту
+      initMap(); // Инициализация карты
+    });
+
     function initMap() {
       const myMap = new ymaps.Map("map", {
-        center: [55.7558, 37.6173], // Координаты (Москва, в качестве примера)
-        zoom: 12
+        center: [41.467977, 69.570510], // Координаты для Чирчика
+        zoom: 16
       });
 
-      // Добавление метки
-      const myPlacemark = new ymaps.Placemark([55.7558, 37.6173], {
+      const myPlacemark = new ymaps.Placemark([41.467977, 69.570510], {
         hintContent: 'Местоположение комплекса',
         balloonContent: 'ЖК Рассвет'
       });
 
       myMap.geoObjects.add(myPlacemark);
     }
-
-    // При клике на ссылку "РАСПОЛОЖЕНИЕ" отображаем карту
-    locationLink.addEventListener('click', function(event) {
-      event.preventDefault(); // Отменяем стандартное поведение ссылки
-      map.style.display = 'block'; // Показываем карту
-      complexDescription.style.display = 'none'; // Скрываем описание, если оно открыто
-      ymaps.ready(initMap); // Инициализируем карту при клике
-    });
   </script>
 
 </body>
