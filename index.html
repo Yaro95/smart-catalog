@@ -14,12 +14,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: #f0f0f0; /* Легкий фон для контраста */
     }
 
     #previewImage {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 50vw; /* Максимальная ширина — 50% от ширины экрана */
+      max-height: 50vh; /* Максимальная высота — 50% от высоты экрана */
       object-fit: contain;
+      border: 2px solid #ccc; /* Рамка вокруг изображения */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Легкая тень для эффекта */
     }
   </style>
 </head>
@@ -28,7 +31,7 @@
    <h1>Изображение презентации</h1>
 
   <!-- Встроенное изображение -->
-  <img src="images/123_CShading_LightMix%20copyy.png" alt="Презентация изображения">
+  <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images/123_CShading_LightMix%20copyy.png" id="previewImage" alt="Презентация изображения">
   
   <!-- Подключение JS -->
   <script src="script.js"></script>
