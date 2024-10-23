@@ -1,90 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Рассвет</title>
+  <meta charset="UTF-8"> <!-- Кодировка страницы -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Для корректного отображения на мобильных устройствах -->
+  <title>360 Картина с Меню</title>
+
   <style>
+    /* Настройка общего стиля для body и html */
     body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #000;
+      margin: 0; /* Убираем отступы */
+      padding: 0; /* Убираем внутренние отступы */
+      width: 100%; /* Ширина страницы на 100% */
+      height: 100%; /* Высота страницы на 100% */
+      display: flex; /* Используем Flexbox для выравнивания контента */
+      justify-content: center; /* Центрирование контента по горизонтали */
+      align-items: center; /* Центрирование контента по вертикали */
+      background-color: #000; /* Устанавливаем черный фон */
     }
 
+    /* Настройка контейнера для изображения */
     #imageContainer {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
+      position: relative; /* Позволяет позиционировать элементы внутри контейнера */
+      width: 100vw; /* Ширина контейнера на всю ширину экрана */
+      height: 100vh; /* Высота контейнера на всю высоту экрана */
     }
 
+    /* Настройка для встроенного iframe (360 изображение) */
     iframe {
-      width: 100vw;
-      height: 100vh;
-      border: none;
-      object-fit: cover;
+      width: 100vw; /* Ширина iframe на всю ширину экрана */
+      height: 100vh; /* Высота iframe на всю высоту экрана */
+      border: none; /* Убираем границу вокруг iframe */
+      object-fit: cover; /* Масштабирование изображения для покрытия контейнера */
     }
 
-    /* Прозрачный слой для перехвата кликов */
-    #clickLayer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 5;
-      background: rgba(0, 0, 0, 0); /* Прозрачный фон */
-    }
-
-    /* Меню поверх */
+    /* Настройка стиля для меню */
     #menu {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 10; /* Чтобы меню отображалось поверх всего */
-      color: white;
-      font-size: 18px;
-      background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
-      padding: 10px;
-      border-radius: 5px;
-      display: none; /* Скрываем меню по умолчанию */
+      position: absolute; /* Позиционирование относительно контейнера */
+      top: 10px; /* Отступ сверху */
+      left: 10px; /* Отступ слева */
+      z-index: 10; /* Меню будет отображаться поверх всего остального */
+      color: white; /* Белый цвет текста */
+      font-size: 18px; /* Размер шрифта меню */
+      background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+      padding: 10px; /* Внутренние отступы для меню */
+      border-radius: 5px; /* Скругленные углы меню */
+      display: none; /* Изначально меню скрыто */
     }
 
-    /* Стили кнопок в меню */
+    /* Стиль для ссылок в меню */
     #menu a {
-      color: white;
-      text-decoration: none;
-      margin-right: 15px;
+      color: white; /* Белый цвет текста для ссылок */
+      text-decoration: none; /* Убираем подчеркивание ссылок */
+      margin-right: 15px; /* Отступ между ссылками */
     }
   </style>
 </head>
 <body>
 
-  <!-- Контейнер для изображения -->
+  <!-- Контейнер для изображения 360 -->
   <div id="imageContainer">
     <!-- Встроенный Kuula 360 -->
-    <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
-    <!-- Прозрачный слой для кликов -->
-    <div id="clickLayer"></div>
-    <!-- Меню -->
+    <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe> <!-- Встраиваем 360 изображение -->
+    
+    <!-- Меню поверх изображения -->
     <div id="menu">
-      <a href="#home">Главная</a>
-      <a href="#about">О Комплексе</a>
-      <a href="#contact">Контакты</a>
+      <a href="#home">Главная</a> <!-- Ссылка на главную страницу -->
+      <a href="#about">О Комплексе</a> <!-- Ссылка на страницу о комплексе -->
+      <a href="#contact">Контакты</a> <!-- Ссылка на страницу контактов -->
     </div>
   </div>
 
   <script>
-    const clickLayer = document.getElementById('clickLayer');
-    const menu = document.getElementById('menu');
+    const imageContainer = document.getElementById('imageContainer'); // Находим контейнер с изображением
+    const menu = document.getElementById('menu'); // Находим элемент меню
 
-    // При клике на прозрачный слой показываем меню
-    clickLayer.addEventListener('click', function() {
-      if (menu.style.display === 'none' || menu.style.display === '') {
+    // Обработчик события для клика по контейнеру изображения
+    imageContainer.addEventListener('click', function() {
+      if (menu.style.display === 'none' || menu.style.display === '') { // Если меню скрыто
         menu.style.display = 'block'; // Показываем меню
       } else {
         menu.style.display = 'none'; // Скрываем меню, если оно уже показано
