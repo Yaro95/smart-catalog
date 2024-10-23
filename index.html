@@ -1,87 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"> <!-- Кодировка страницы -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Для корректного отображения на мобильных устройствах -->
-  <title>360 Картина с Меню</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>360 Картина с Меню и Описанием</title>
 
   <style>
-    /* Настройка общего стиля для body и html */
+    /* Общие стили для body и html */
     body, html {
       margin: 0; /* Убираем отступы */
       padding: 0; /* Убираем внутренние отступы */
-      width: 100%; /* Ширина страницы на 100% */
-      height: 100%; /* Высота страницы на 100% */
-      display: flex; /* Используем Flexbox для выравнивания контента */
-      justify-content: center; /* Центрирование контента по горизонтали */
-      align-items: center; /* Центрирование контента по вертикали */
-      background-color: #000; /* Устанавливаем черный фон */
+      width: 100%; /* Устанавливаем ширину на 100% */
+      height: 100%; /* Устанавливаем высоту на 100% */
+      display: flex; /* Flexbox для центрирования контента */
+      justify-content: center; /* Центрируем контент по горизонтали */
+      align-items: center; /* Центрируем контент по вертикали */
+      background-color: #000; /* Черный фон */
     }
 
-    /* Настройка контейнера для изображения */
+    /* Стили для контейнера изображения */
     #imageContainer {
-      position: relative; /* Позволяет позиционировать элементы внутри контейнера */
-      width: 100vw; /* Ширина контейнера на всю ширину экрана */
-      height: 100vh; /* Высота контейнера на всю высоту экрана */
+      position: relative; /* Позиционирование относительно контейнера */
+      width: 100vw; /* Устанавливаем ширину на весь экран */
+      height: 100vh; /* Устанавливаем высоту на весь экран */
     }
 
-    /* Настройка для встроенного iframe (360 изображение) */
+    /* Стили для iframe (Kuula 360) */
     iframe {
-      width: 100vw; /* Ширина iframe на всю ширину экрана */
-      height: 100vh; /* Высота iframe на всю высоту экрана */
-      border: none; /* Убираем границу вокруг iframe */
-      object-fit: cover; /* Масштабирование изображения для покрытия контейнера */
+      width: 100vw; /* Ширина на всю ширину экрана */
+      height: 100vh; /* Высота на всю высоту экрана */
+      border: none; /* Убираем границу */
+      object-fit: cover; /* Заполняем контейнер */
     }
 
-    /* Настройка стиля для меню */
+    /* Стили для меню */
     #menu {
       position: absolute; /* Позиционирование относительно контейнера */
-      top: 10px; /* Отступ сверху */
-      left: 10px; /* Отступ слева */
-      z-index: 10; /* Меню будет отображаться поверх всего остального */
+      top: 6%; /* Позиция меню сверху */
+      left: 50%; /* Центрируем по горизонтали */
+      transform: translate(-50%, -50%); /* Точная центровка */
+      z-index: 10; /* Меню будет отображаться поверх всего */
       color: white; /* Белый цвет текста */
-      font-size: 18px; /* Размер шрифта меню */
+      font-size: 18px; /* Размер текста */
       background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
-      padding: 10px; /* Внутренние отступы для меню */
-      border-radius: 5px; /* Скругленные углы меню */
-      display: none; /* Изначально меню скрыто */
+      padding: 10px; /* Отступы внутри меню */
+      border-radius: 5px; /* Скругленные углы */
     }
 
-    /* Стиль для ссылок в меню */
+    /* Стили для ссылок в меню */
     #menu a {
-      color: white; /* Белый цвет текста для ссылок */
-      text-decoration: none; /* Убираем подчеркивание ссылок */
+      color: white; /* Белый цвет текста */
+      text-decoration: none; /* Убираем подчеркивание */
       margin-right: 15px; /* Отступ между ссылками */
+    }
+
+    /* Стили для блока с описанием комплекса */
+    #complexDescription {
+      position: absolute; /* Позиционирование относительно контейнера */
+      top: 50%; /* Центрируем по вертикали */
+      left: 50%; /* Центрируем по горизонтали */
+      transform: translate(-50%, -50%); /* Точная центровка */
+      z-index: 10; /* Отображается поверх изображения */
+      color: white; /* Белый цвет текста */
+      font-size: 22px; /* Размер текста */
+      background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+      padding: 20px; /* Отступы внутри блока */
+      border-radius: 5px; /* Скругленные углы */
+      display: none; /* Скрыт по умолчанию */
+      text-align: center; /* Текст по центру */
     }
   </style>
 </head>
 <body>
 
-  <!-- Контейнер для изображения 360 -->
+  <!-- Контейнер для Kuula 360 изображения -->
   <div id="imageContainer">
     <!-- Встроенный Kuula 360 -->
-    <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe> <!-- Встраиваем 360 изображение -->
-    
-    <!-- Меню поверх изображения -->
+    <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
+
+    <!-- Меню, которое отображается сразу -->
     <div id="menu">
-      <a href="#home">Главная</a> <!-- Ссылка на главную страницу -->
-      <a href="#about">О Комплексе</a> <!-- Ссылка на страницу о комплексе -->
-      <a href="#contact">Контакты</a> <!-- Ссылка на страницу контактов -->
+      <a href="#home">ГЛАВНАЯ</a>
+      <a href="#about" id="aboutLink">О КОМПЛЕКСЕ</a>
+      <a href="#apartment">ПЛАНИРОВКИ</a>
+      <a href="#location">РАСПОЛОЖЕНИЯ</a>
+      <a href="#contact">КОНТАКТЫ</a>
+    </div>
+
+    <!-- Описание о комплексе -->
+    <div id="complexDescription">
+      ЖК Рассвет премиум класса
+      Вставте сюда текст 
     </div>
   </div>
 
   <script>
-    const imageContainer = document.getElementById('imageContainer'); // Находим контейнер с изображением
-    const menu = document.getElementById('menu'); // Находим элемент меню
+    // Получаем элемент с описанием комплекса
+    const complexDescription = document.getElementById('complexDescription');
 
-    // Обработчик события для клика по контейнеру изображения
-    imageContainer.addEventListener('click', function() {
-      if (menu.style.display === 'none' || menu.style.display === '') { // Если меню скрыто
-        menu.style.display = 'block'; // Показываем меню
-      } else {
-        menu.style.display = 'none'; // Скрываем меню, если оно уже показано
-      }
+    // Получаем ссылку "О КОМПЛЕКСЕ"
+    const aboutLink = document.getElementById('aboutLink');
+
+    // При клике на ссылку показываем блок с описанием
+    aboutLink.addEventListener('click', function(event) {
+      event.preventDefault(); // Отменяем стандартное поведение ссылки
+      complexDescription.style.display = 'block'; // Показываем описание
     });
   </script>
+
 </body>
 </html>
