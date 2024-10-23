@@ -6,26 +6,29 @@
   <title>Загрузка изображения</title>
   <!-- Подключение CSS -->
   <link rel="stylesheet" href="style.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #previewImage {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+  </style>
 </head>
 <body>
+ 
+   <h1>Изображение презентации</h1>
 
-  <h1>Загрузить изображение</h1>
-
-  <!-- Форма для загрузки изображения -->
-  <form id="uploadForm" enctype="multipart/form-data">
-    <label for="fileUpload">Выберите файл:</label>
-    <input type="file" name="fileUpload" id="fileUpload" accept="image/*,video/*">
-    <button type="submit">Загрузить</button>
-  </form>
-
-  <h2>Предварительный просмотр:</h2>
-  <img id="previewImage" 
-       src="#" 
-       alt="Предварительный просмотр изображения" style="width: 90%; max-width: 2400px; height: auto; display: block; margin: 0 auto;">/>
-  <!-- Для видео -->
-  <video id="previewVideo" controls style="display: none;">
-    Ваш браузер не поддерживает видео теги.
-  </video>
+  <!-- Встроенное изображение -->
+  <img src="images/123_CShading_LightMix%20copyy.png" alt="Презентация изображения">
   
   <!-- Подключение JS -->
   <script src="script.js"></script>
