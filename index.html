@@ -51,7 +51,6 @@
       background-color: rgba(0, 0, 0, 0.5);
       padding: 10px;
       border-radius: 5px;
-      display: none;
     }
 
     #menu a {
@@ -80,7 +79,6 @@
       height: calc(100vh - 6cm); /* Размер карты такой же, как у изображения */
       display: none; /* Скрываем карту по умолчанию */
       z-index: 5; /* Задаем z-index ниже чем у меню */
-
     }
 
     #prev, #next {
@@ -109,21 +107,22 @@
   <div id="imageContainer">
     <img id="slideshowImage" src="image1.jpg" alt="Слайд 1">
     <img id="logo" src="images1/1.jpg" alt="Логотип"> <!-- Логотип -->
-
-    <div id="menu">
-      <a href="#home" id="homeLink">ГЛАВНАЯ</a>
-      <a href="#about" id="aboutLink">О КОМПАНИИ</a>
-      <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a>
-      <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a>
-    </div>
-
-    <div id="complexDescription">
-      Компания ISM и т.д.
-    </div>
-
-    <button id="prev">&lt;</button> <!-- Кнопка предыдущий слайд -->
-    <button id="next">&gt;</button> <!-- Кнопка следующий слайд -->
   </div>
+
+  <!-- Меню вынесено отдельно -->
+  <div id="menu">
+    <a href="#home" id="homeLink">ГЛАВНАЯ</a>
+    <a href="#about" id="aboutLink">О КОМПАНИИ</a>
+    <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a>
+    <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a>
+  </div>
+
+  <div id="complexDescription">
+    Компания ISM и т.д.
+  </div>
+
+  <button id="prev">&lt;</button> <!-- Кнопка предыдущий слайд -->
+  <button id="next">&gt;</button> <!-- Кнопка следующий слайд -->
 
   <!-- Контейнер для карты -->
   <div id="map"></div>
