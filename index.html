@@ -21,12 +21,15 @@
       position: relative;
       width: 100vw;
       height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     img {
-      width: 100vw;
-      height: 100vh;
       object-fit: cover;
+      width: calc(100vw - 10cm); /* Отступы по 5 см с каждой стороны по горизонтали */
+      height: calc(100vh - 20cm); /* Отступы по 10 см с каждой стороны по вертикали */
     }
 
     #menu {
