@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Видео на весь экран и 360 картинка</title>
+  <title>2D 360 Картинка с Меню</title>
   <style>
     body, html {
       margin: 0;
@@ -13,19 +13,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #000; /* Фон для видео */
+      background-color: #000;
     }
 
-    #videoContainer, #imageContainer {
+    #imageContainer {
       position: relative;
       width: 100vw;
       height: 100vh;
     }
 
-    video, img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Видео или изображение будут на весь экран */
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      object-fit: cover;
     }
 
     /* Меню поверх */
@@ -51,15 +52,10 @@
 </head>
 <body>
 
-  <!-- Контейнер для видео -->
-<div id="videoContainer">
-  <iframe src="https://drive.google.com/file/d/1jBg1o3VLAaBJW-stBMElbX4mZpVNkelD/preview" width="640" height="480" allow="autoplay"></iframe>
-</div>
-
-    <!-- Контейнер для изображения -->
-  <div id="imageContainer" style="display:none;">
+  <!-- Контейнер для изображения -->
+  <div id="imageContainer">
     <!-- Встроенный Kuula 360 -->
-    <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen style="width: 100vw; height: 100vh; border: none;"></iframe>
+    <iframe src="https://kuula.co/share/5tthr?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1" allowfullscreen></iframe>
     <!-- Меню -->
     <div id="menu">
       <a href="#home">Главная</a>
@@ -69,17 +65,12 @@
   </div>
 
   <script>
-    // Элемент видео
-    const video = document.getElementById('myVideo');
-    const videoContainer = document.getElementById('videoContainer');
     const imageContainer = document.getElementById('imageContainer');
     const menu = document.getElementById('menu');
 
-    // При клике на видео показываем изображение
-    video.addEventListener('click', function() {
-      videoContainer.style.display = 'none'; // Скрываем видео
-      imageContainer.style.display = 'block'; // Показываем изображение
-      menu.style.display = 'block'; // Показываем меню поверх изображения
+    // При клике на изображение показываем меню
+    imageContainer.addEventListener('click', function() {
+      menu.style.display = 'block'; // Показываем меню при клике
     });
   </script>
 </body>
