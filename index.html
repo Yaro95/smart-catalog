@@ -99,6 +99,24 @@
       display: none; /* По умолчанию карта скрыта */
       z-index: 5; /* Карта отображается ниже меню */
     }  
+
+    /* Стили для адаптации на смартфонах */
+    @media (max-width: 768px) {
+  #logo {
+    width: 100px; /* Уменьшаем ширину логотипа */
+    left: 1cm; /* Отступ меньше */
+  }
+
+  img {
+    width: 100vw; /* На маленьких экранах убираем отступы */
+    height: auto;
+  }
+
+  #menu {
+    font-size: 14px; /* Уменьшаем размер текста в меню */
+    padding: 5px;
+  }
+}
     
   </style>
 </head>
@@ -106,8 +124,8 @@
 
   <!-- Контейнер для слайд-шоу -->
   <div id="imageContainer">
-    <img id="slideshowImage" src="image/1.jpeg" alt="Слайд 1"> <!-- Изображение для слайд-шоу -->
-    <img id="logo" src="images1/3.jpeg" alt="Логотип"> <!-- Логотип -->
+    <img id="slideshowImage" src="https://yaro95.github.io/image/1.jpeg" alt="Слайд 1"> <!-- Изображение для слайд-шоу -->
+    <img id="logo" src="https://yaro95.github.io/images1/3.jpeg" alt="Логотип"> <!-- Логотип -->
   </div>
 
   <!-- Меню -->
@@ -129,7 +147,7 @@
   <!-- Скрипты -->
   <script>
     // Массив с изображениями для слайд-шоу
-    const images = ['images1/1.jpeg', 'images1/2.jpeg']; 
+    const images = ['https://yaro95.github.io/images1/1.jpeg', 'https://yaro95.github.io/images1/2.jpeg']; 
     let currentIndex = 0; // Текущий индекс слайда
     let slideshowInterval; // Интервал для слайд-шоу
     let mapInitialized = false; // Флаг для проверки инициализации карты
