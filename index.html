@@ -138,10 +138,6 @@
     Компания ISM и т.д. <!-- Описание компании -->
   </div>
 
-  <!-- Кнопки для переключения слайдов -->
-  <button id="prev">&lt;</button> <!-- Кнопка "предыдущий слайд" -->
-  <button id="next">&gt;</button> <!-- Кнопка "следующий слайд" -->
-
   <!-- Контейнер для карты -->
   <div id="map"></div>
 
@@ -190,10 +186,81 @@
       stopSlideshow(); // Останавливаем слайд-шоу
       menu.style.display = 'block'; // Показываем меню
     });
+    
+/* для просмотра слайда при помощи сенсора*/
+  let isDragging = false;
+let startPosX = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+let animationID;
+let currentIndex = 0;
 
-    // События для кнопок переключения слайдов
-    document.getElementById('next').addEventListener('click', showNextImage); // Показ следующего слайда
-    document.getElementById('prev').addEventListener('click', showPreviousImage); // Показ предыдущего слайда
+const images = ['images1/1.jpeg', 'images1/2.jpeg']; // Массив изображений
+const slideshowImage = document.getElementById('slideshowImage');
+
+// Добавляем события для мыши
+slideshowImage.addEventListener('mousedown', startDrag);
+slideshowImage.addEventListener('mouseup', endDrag);
+slideshowImage.addEventListener('mousemove', dragMove);
+slideshowImage.addEventListener('mouseleave', endDrag);
+
+// Добавляем события для сенсорных экранов
+slideshowImage.addEventListener('touchstart', startDrag);
+slideshowImage.addEventListener('touchend', endDrag);
+slideshowImage.addEventListener('touchmove', dragMove);
+
+function startDrag(event) {
+  isDragging = true;
+  startPosX = getPositionX(event);
+  animationID = requestAnimationFrame(animation);
+}
+
+function dragMove(event) {
+  if (isDragging) {
+    const currentPositionX = getPositionX(event);
+    const diff = currentPositionX - startPosX;
+    currentTranslate = prevTranslate + diff;
+  }
+}
+
+function endDrag() {
+  isDragging = false;
+  cancelAnimationFrame(animationID);
+
+  const movedBy = currentTranslate - prevTranslate;
+
+  if (movedBy < -100 && currentIndex < images.length - 1) {
+    currentIndex += 1; // Переход на следующий слайд
+  }
+
+  if (movedBy > 100 && currentIndex > 0) {
+    currentIndex -= 1; // Переход на предыдущий слайд
+  }
+
+  slideshowImage.src = images[currentIndex];
+  setPositionByIndex();
+}
+
+function getPositionX(event) {
+  return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+}
+
+function animation() {
+  setSliderPosition();
+  if (isDragging) {
+    requestAnimationFrame(animation);
+  }
+}
+
+function setSliderPosition() {
+  slideshowImage.style.transform = `translateX(${currentTranslate}px)`;
+}
+
+function setPositionByIndex() {
+  currentTranslate = currentIndex * -window.innerWidth;
+  prevTranslate = currentTranslate;
+  setSliderPosition();
+}
 
     // Инициализация Яндекс.Карт
     function initMap() {
