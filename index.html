@@ -4,7 +4,7 @@
   <!-- Мета-данные документа -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> ISM Строй </title>
+  <title>ISM Строй</title>
 
   <!-- Стили для страницы -->
   <style>
@@ -37,8 +37,8 @@
       height: calc(100vh - 6cm); /* Высота изображения с отступом 3 см */
     }
 
-      /* Стили для перетягивония слайда */
-     #slideshowImage {
+    /* Стили для перетягивания слайда */
+    #slideshowImage {
       transition: transform 0.3s ease; /* Плавный переход для сдвига изображения */
       width: calc(100vw - 2cm); /* Убедитесь, что размеры совпадают с тем, как вы хотите отображать изображение */
       height: calc(100vh - 6cm); /* Аналогично с высотой */
@@ -102,22 +102,52 @@
 
     /* Стили для адаптации на смартфонах */
     @media (max-width: 768px) {
-  #logo {
-    width: 100px; /* Уменьшаем ширину логотипа */
-    left: 1cm; /* Отступ меньше */
-  }
+      #logo {
+        width: 100px; /* Уменьшаем ширину логотипа */
+        left: 1cm; /* Отступ меньше */
+      }
 
-  img {
-    width: 100vw; /* На маленьких экранах убираем отступы */
-    height: auto;
-  }
+      img {
+        width: 100vw; /* На маленьких экранах убираем отступы */
+        height: auto;
+      }
 
-  #menu {
-    font-size: 14px; /* Уменьшаем размер текста в меню */
-    padding: 5px;
-  }
-}
-    
+      #menu {
+        font-size: 14px; /* Уменьшаем размер текста в меню */
+        padding: 5px;
+      }
+    }
+
+    /* Стили для раздела с объектами */
+    #residentialComplexes {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .complex {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .complex img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .complex img:hover {
+      transform: scale(1.05); /* Увеличение картинки при наведении */
+    }
+
+    .complex p {
+      font-size: 18px;
+      margin-top: 10px;
+      color: black;
+    }
   </style>
 </head>
 <body>
@@ -134,6 +164,28 @@
     <a href="#about" id="aboutLink">О КОМПАНИИ</a> <!-- Ссылка на раздел "О компании" -->
     <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a> <!-- Ссылка на раздел с картой -->
     <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a> <!-- Ссылка на раздел жилых комплексов -->
+  </div>
+
+  <!-- Раздел для отображения объектов с картинками и описанием -->
+  <div id="residentialComplexes" style="display: none;">
+    <div class="complex">
+      <a href="#complex1Page" id="complex1Link">
+        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/1.jpeg" alt="Комплекс 1">
+        <p>Комплекс 1</p>
+      </a>
+    </div>
+    <div class="complex">
+      <a href="#complex2Page" id="complex2Link">
+        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/2.jpeg" alt="Комплекс 2">
+        <p>Комплекс 2</p>
+      </a>
+    </div>
+    <div class="complex">
+      <a href="#complex3Page" id="complex3Link">
+        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/1.jpeg" alt="Комплекс 3">
+        <p>Комплекс 3</p>
+      </a>
+    </div>
   </div>
 
   <!-- Блок с описанием о компании -->
@@ -161,6 +213,7 @@
     const menu = document.getElementById('menu');
     const complexDescription = document.getElementById('complexDescription');
     const map = document.getElementById('map');
+    const residentialComplexes = document.getElementById('residentialComplexes');
 
     // Функция для показа следующего слайда
     function showNextImage() {
@@ -173,6 +226,7 @@
       currentIndex = (currentIndex - 1 + images.length) % images.length; // Уменьшаем индекс
       slideshowImage.src = images[currentIndex]; // Меняем изображение
     }
+
     // Старт перетаскивания
     function startDrag(event) {
       isDragging = true;
@@ -187,7 +241,7 @@
       slideshowImage.style.transform = `translateX(${-diff}px)`; // Визуальное перемещение изображения
     }
     
-     // Завершение перетаскивания
+    // Завершение перетаскивания
     function endDrag(event) {
       if (!isDragging) return;
       isDragging = false;
@@ -195,29 +249,29 @@
       const diff = startPosX - endPosX;
 
       if (diff > 50) {
-        showNextImage();// Переход на следующий слайд
-      } 
-      else if (diff < -50) {
-        showPreviousImage();// Переход на предыдущий слайд
+        showNextImage(); // Переход на следующий слайд
+      } else if (diff < -50) {
+        showPreviousImage(); // Переход на предыдущий слайд
       }
       slideshowImage.style.transform = 'translateX(0)'; // Возвращаем изображение на место
       slideshowImage.style.transition = 'transform 0.3s ease'; // Возвращаем анимацию
     }
+
     // Получение позиции по X
     function getPositionX(event) {
       return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
     }
-    
+
     // Добавление событий для мыши
     slideshowImage.addEventListener('mousedown', startDrag);
     slideshowImage.addEventListener('mousemove', dragMove);
     slideshowImage.addEventListener('mouseup', endDrag);
     slideshowImage.addEventListener('mouseleave', endDrag);
+
     // Добавление событий для сенсорных устройств
     slideshowImage.addEventListener('touchstart', startDrag);
     slideshowImage.addEventListener('touchmove', dragMove);
     slideshowImage.addEventListener('touchend', endDrag);
-
 
     // Автоматическое переключение изображений (слайд-шоу)
     function startSlideshow() {
@@ -232,13 +286,39 @@
     // Старт слайд-шоу при загрузке страницы
     startSlideshow();
 
-    // Остановка слайд-шоу при клике на изображение
-    slideshowImage.addEventListener('click', function() {
-      stopSlideshow(); // Останавливаем слайд-шоу
-      menu.style.display = 'block'; // Показываем меню
+    // Обработчики для меню
+    document.getElementById('aboutLink').addEventListener('click', function(event) {
+      event.preventDefault(); // Предотвращаем стандартное действие ссылки
+      complexDescription.style.display = 'block'; // Показываем описание компании
+      residentialComplexes.style.display = 'none'; // Скрываем список объектов
+      imageContainer.style.display = 'none'; // Скрываем слайд-шоу
+      map.style.display = 'none'; // Скрываем карту
     });
-    
 
+    document.getElementById('homeLink').addEventListener('click', function(event) {
+      event.preventDefault(); // Предотвращаем стандартное действие ссылки
+      complexDescription.style.display = 'none'; // Скрываем описание компании
+      residentialComplexes.style.display = 'none'; // Скрываем список объектов
+      map.style.display = 'none'; // Скрываем карту
+      imageContainer.style.display = 'flex'; // Показываем слайд-шоу
+    });
+
+    document.getElementById('locationLink').addEventListener('click', function(event) {
+      event.preventDefault(); // Предотвращаем стандартное действие ссылки
+      complexDescription.style.display = 'none'; // Скрываем описание компании
+      residentialComplexes.style.display = 'none'; // Скрываем список объектов
+      imageContainer.style.display = 'none'; // Скрываем слайд-шоу
+      map.style.display = 'block'; // Показываем карту
+      initMap(); // Инициализируем карту
+    });
+
+    document.getElementById('residentialLink').addEventListener('click', function(event) {
+      event.preventDefault(); // Предотвращаем стандартное действие ссылки
+      complexDescription.style.display = 'none'; // Скрываем описание компании
+      map.style.display = 'none'; // Скрываем карту
+      imageContainer.style.display = 'none'; // Скрываем слайд-шоу
+      residentialComplexes.style.display = 'flex'; // Показываем список объектов
+    });
 
     // Инициализация Яндекс.Карт
     function initMap() {
@@ -257,39 +337,6 @@
         mapInitialized = true; // Устанавливаем флаг после инициализации карты
       }
     }
-
-    // Обработчик для ссылки "О компании"
-    document.getElementById('aboutLink').addEventListener('click', function(event) {
-      event.preventDefault(); // Предотвращаем стандартное действие ссылки
-      complexDescription.style.display = 'block'; // Показываем описание компании
-      map.style.display = 'none'; // Скрываем карту
-      imageContainer.style.display = 'none'; // Скрываем слайд-шоу
-    });
-
-    // Обработчик для ссылки "Главная"
-    document.getElementById('homeLink').addEventListener('click', function(event) {
-      event.preventDefault(); // Предотвращаем стандартное действие ссылки
-      complexDescription.style.display = 'none'; // Скрываем описание компании
-      map.style.display = 'none'; // Скрываем карту
-      imageContainer.style.display = 'flex'; // Показываем слайд-шоу
-    });
-
-    // Обработчик для ссылки "Расположение"
-    document.getElementById('locationLink').addEventListener('click', function(event) {
-      event.preventDefault(); // Предотвращаем стандартное действие ссылки
-      complexDescription.style.display = 'none'; // Скрываем описание компании
-      imageContainer.style.display = 'none'; // Скрываем слайд-шоу
-      map.style.display = 'block'; // Показываем карту
-      initMap(); // Инициализируем карту
-    });
-
-    // Обработчик для ссылки "Жилые комплексы"
-    document.getElementById('residentialLink').addEventListener('click', function(event) {
-      event.preventDefault(); // Предотвращаем стандартное действие ссылки
-      complexDescription.style.display = 'none'; // Скрываем описание компании
-      map.style.display = 'none'; // Скрываем карту
-      imageContainer.style.display = 'none'; // Скрываем слайд-шоу
-    });
 
   </script>
 
