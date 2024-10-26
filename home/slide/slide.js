@@ -8,12 +8,9 @@
     let isDragging = false;
 
     // Элементы DOM
+    // Элементы для слайд-шоу
     const slideshowImage = document.getElementById('slideshowImage');
     const imageContainer = document.getElementById('imageContainer');
-    const menu = document.getElementById('menu');
-    const complexDescription = document.getElementById('complexDescription');
-    const map = document.getElementById('map');
-    const residentialComplexes = document.getElementById('residentialComplexes');
 
     // Функция для показа следующего слайда
     function showNextImage() {
