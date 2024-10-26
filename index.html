@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Мета-данные документа -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ISM Строй</title>
 </head>
 <body>
 
-<!-- Здесь добавьте свои HTML элементы -->
+<!-- Контейнеры для загрузки контента -->
 <div id="menu-container"></div>
 <div id="logo-container"></div>
 <div id="slide-container"></div>
@@ -16,102 +15,7 @@
 <div id="map-container"></div>
 <div id="complex-container"></div>
 
-<!-- Кнопки для загрузки стилей и скриптов -->
-<button id="styleLink">Загрузить стили для Главной страницы</button>
-<button id="logoLink">Загрузить стили для Logo</button>
-<button id="menuLink">Загрузить стили для Menu</button>
-<button id="slideLink">Загрузить стили для Slide</button>
-<button id="aboutLink">Загрузить стили для About</button>
-<button id="mapLink">Загрузить стили для Map</button>
-<button id="ResidentialcomplexesLink">Загрузить стили для Residential Complexes</button>
-  
-  
-<script type="text/javascript">
-  // Функция для динамической загрузки CSS
-  function loadCSS(url) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = url;
-      document.head.appendChild(link);
-  }
-
-  // Загрузка стилей для Главной страницы
-  document.getElementById('styleLink').addEventListener('click', function() {
-      loadCSS('css/style.css');
-  });
-
-  // Загрузка стилей для logo
-  document.getElementById('logoLink').addEventListener('click', function() {
-      loadCSS('css/logo.css');
-  });
-
-  // Загрузка стилей для menu
-  document.getElementById('menuLink').addEventListener('click', function() {
-      loadCSS('css/menu.css');
-  });  
-
-  // Загрузка стилей для slide
-  document.getElementById('slideLink').addEventListener('click', function() {
-      loadCSS('css/slide.css');
-  });  
-
-  // Загрузка стилей для About
-  document.getElementById('aboutLink').addEventListener('click', function() {
-      loadCSS('css/about.css');
-  });
-
-  // Загрузка стилей для Map
-  document.getElementById('mapLink').addEventListener('click', function() {
-      loadCSS('css/map.css');
-  });
-
-  // Загрузка стилей для Residentialcomplexes
-  document.getElementById('ResidentialcomplexesLink').addEventListener('click', function() {
-      loadCSS('css/Residentialcomplexes.css');
-  });
-
-  // Функция для динамической загрузки скриптов
-  function loadScript(url) {
-      const script = document.createElement('script');
-      script.src = url;
-      document.head.appendChild(script);
-  }
-
-  // Загрузка script.js
-  document.getElementById('scriptLink').addEventListener('click', function() {
-      loadScript('js/script.js');
-  });
-
-  // Загрузка logo.js
-  document.getElementById('logoLink').addEventListener('click', function() {
-      loadScript('js/logo.js');
-  });
-
-  // Загрузка menu.js
-  document.getElementById('menuLink').addEventListener('click', function() {
-      loadScript('js/menu.js');
-  });
-
-  // Загрузка slide.js
-  document.getElementById('slideLink').addEventListener('click', function() {
-      loadScript('js/slide.js');
-  });
-
-  // Загрузка about.js
-  document.getElementById('aboutLink').addEventListener('click', function() {
-      loadScript('js/about.js');
-  });
-
-  // Загрузка map.js
-  document.getElementById('mapLink').addEventListener('click', function() {
-      loadScript('js/map.js');
-  });
-
-  // Загрузка Residentialcomplexes.js
-  document.getElementById('ResidentialcomplexesLink').addEventListener('click', function() {
-      loadScript('js/Residentialcomplexes.js');
-  });
-
-</script>
+<!-- Подключаем основной JavaScript файл -->
+<script src="script.js"></script>
 </body>
 </html>
