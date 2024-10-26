@@ -1,5 +1,6 @@
 // Массив с изображениями для слайд-шоу
-    const images = ['https://raw.githubusercontent.com/Yaro95/smart-catalog/main/home/slide/1.jpeg', 'https://raw.githubusercontent.com/Yaro95/smart-catalog/main/home/slide/2.jpeg']; 
+    const images = ['https://raw.githubusercontent.com/Yaro95/smart-catalog/main/home/slide/1.jpeg', 
+                    'https://raw.githubusercontent.com/Yaro95/smart-catalog/main/home/slide/2.jpeg']; 
     let currentIndex = 0; // Текущий индекс слайда
     let slideshowInterval; // Интервал для слайд-шоу
     let mapInitialized = false; // Флаг для проверки инициализации карты
