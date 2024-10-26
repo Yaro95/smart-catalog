@@ -91,6 +91,20 @@
       display: none; /* По умолчанию блок скрыт */
       text-align: center; /* Текст по центру */
     }
+    
+    #backButton {
+  display: none; /* Изначально скрыта */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
     /* Стили для карты */
     #map {
@@ -118,36 +132,113 @@
       }
     }
 
-    /* Стили для раздела с объектами */
-    #residentialComplexes {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+  /* Стили для раздела с объектами */
+#residentialComplexes {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px; /* Расстояние между карточками */
+}
 
-    .complex {
-      margin: 20px;
-      text-align: center;
-    }
+/* Основной стиль карточки */
+.complex {
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Тень для создания эффекта "плавающей" карточки */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавные переходы для наведения */
+  position: relative; /* Для позиционирования меток */
+}
 
-    .complex img {
-      width: 200px;
-      height: 150px;
-      object-fit: cover;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+.complex:hover {
+  transform: translateY(-5px); /* Сдвиг карточки вверх при наведении */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Усиление тени при наведении */
+}
 
-    .complex img:hover {
-      transform: scale(1.05); /* Увеличение картинки при наведении */
-    }
+/* Стиль для изображения */
+.complex img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Сохранение пропорций и заполнение контейнера */
+  transition: transform 0.3s ease; /* Плавное увеличение при наведении */
+}
 
-    .complex p {
-      font-size: 18px;
-      margin-top: 10px;
-      color: black;
-    }
+.complex img:hover {
+  transform: scale(1.05); /* Увеличение картинки при наведении */
+}
+
+/* Контейнер для меток */
+.labels {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Стили для меток - цвета для меток*/
+.label-green {
+  background-color: rgba(0, 128, 0, 0.8); /* Зеленый цвет для ипотеки */
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.label-orange {
+  background-color: rgba(255, 165, 0, 0.8); /* Оранжевый цвет для ключей */
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.label-purple {
+  background-color: rgba(128, 0, 128, 0.8); /* Фиолетовый цвет для скидок */
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+/* Стили для заголовка и текста под карточкой */
+.complex p {
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Блок с информацией внутри карточки */
+.complex .info {
+  padding: 15px;
+}
+
+.complex .info h3 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+}
+
+.complex .info p {
+  font-size: 14px;
+  color: #777;
+  margin: 5px 0 0 0;
+}
+
+/* Стили для нижней части карточки с дополнительной информацией */
+.complex .footer {
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between; /* Разделение текста по бокам */
+  font-size: 14px;
+  color: #555;
+}
   </style>
 </head>
 <body>
@@ -166,27 +257,53 @@
     <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a> <!-- Ссылка на раздел жилых комплексов -->
   </div>
 
-  <!-- Раздел для отображения объектов с картинками и описанием -->
-  <div id="residentialComplexes" style="display: none;">
-    <div class="complex">
-      <a href="#complex1Page" id="complex1Link">
+ <!-- Раздел для отображения объектов с картинками и описанием -->
+<div id="residentialComplexes" style="display: none;">
+  <!-- Разделы по каждому ЖК -->
+  <div class="complex">
+    <a href="#complex1Page" id="complex1Link">
+      <div class="card-image">
         <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/1.jpeg" alt="Комплекс 1">
-        <p>Комплекс 1</p>
-      </a>
-    </div>
-    <div class="complex">
-      <a href="#complex2Page" id="complex2Link">
-        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/2.jpeg" alt="Комплекс 2">
-        <p>Комплекс 2</p>
-      </a>
-    </div>
-    <div class="complex">
-      <a href="#complex3Page" id="complex3Link">
-        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/1.jpeg" alt="Комплекс 3">
-        <p>Комплекс 3</p>
-      </a>
-    </div>
+        <!-- Метки поверх изображения -->
+        <div class="labels">
+          <!--если будешь добовлять еще строчки то добавь в стиле цвет-->
+          <span class="label-green">срок сдачи</span>
+          <span class="label-orange">Рассрочка</span>
+          <span class="label-purple">Скидки 5%</span>
+        </div>
+      </div>
+      <p>Комплекс 1</p>
+    </a>
   </div>
+
+  <div class="complex">
+    <a href="#complex2Page" id="complex2Link">
+      <div class="card-image">
+        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/2.jpeg" alt="Комплекс 2">
+        <!-- Метки поверх изображения -->
+        <div class="labels">
+          <span class="label-green">Срок сдачи</span>
+          <span class="label-orange">Без процентная рассрочка</span>
+        </div>
+      </div>
+      <p>Комплекс 2</p>
+    </a>
+  </div>
+
+  <div class="complex">
+    <a href="#complex3Page" id="complex3Link">
+      <div class="card-image">
+        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/1.jpeg" alt="Комплекс 3">
+        <!-- Метки поверх изображения -->
+        <div class="labels">
+          <span class="label-green">Скидка 10%</span>
+          <span class="label-orange">Готов к сдаче</span>
+        </div>
+      </div>
+      <p>Комплекс 3</p>
+    </a>
+  </div>
+</div>
 
   <!-- Блок с описанием о компании -->
   <div id="complexDescription">
@@ -195,6 +312,11 @@
 
   <!-- Контейнер для карты -->
   <div id="map"></div>
+  
+  <!-- Кнопка для возврата на главную панель -->
+<button id="backButton" style="display: none; position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
+  ← Назад
+</button>
 
   <!-- Скрипты -->
   <script>
@@ -319,6 +441,29 @@
       imageContainer.style.display = 'none'; // Скрываем слайд-шоу
       residentialComplexes.style.display = 'flex'; // Показываем список объектов
     });
+    
+    // Элемент кнопки "Назад"
+const backButton = document.getElementById('backButton');
+
+// Обработчик для ссылки "Жилые комплексы"
+document.getElementById('residentialLink').addEventListener('click', function(event) {
+  event.preventDefault(); // Предотвращаем стандартное действие ссылки
+  
+  // Скрываем меню и слайд-шоу, показываем раздел с объектами и кнопку "Назад"
+  menu.style.display = 'none';
+  imageContainer.style.display = 'none';
+  document.getElementById('residentialComplexes').style.display = 'flex';
+  backButton.style.display = 'block';
+});
+
+// Обработчик для кнопки "Назад"
+backButton.addEventListener('click', function() {
+  // Скрываем раздел с объектами и кнопку "Назад", показываем меню и слайд-шоу
+  document.getElementById('residentialComplexes').style.display = 'none';
+  backButton.style.display = 'none';
+  menu.style.display = 'block';
+  imageContainer.style.display = 'flex';
+});
 
     // Инициализация Яндекс.Карт
     function initMap() {
