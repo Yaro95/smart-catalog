@@ -5,5 +5,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ISM Строй</title>
+</head>
+  <body>
+    
+  // Функция для динамической загрузки CSS
+function loadCSS(url) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = url;
+    document.head.appendChild(link);
+}
 
+// Загрузка стилей для Главной страницы
+document.getElementById('styleLink').addEventListener('click', function() {
+    loadCSS('css/style.css');
 
+// Загрузка стилей для logo
+document.getElementById('logotLink').addEventListener('click', function() {
+    loadCSS('css/logo.css');
+});
+
+ // Загрузка стилей для menu
+document.getElementById('menutLink').addEventListener('click', function() {
+    loadCSS('css/menu.css');
+});  
+
+     // Загрузка стилей для slide
+document.getElementById('slidetLink').addEventListener('click', function() {
+    loadCSS('css/slide.css');
+});  
+
+// Загрузка стилей для About
+document.getElementById('aboutLink').addEventListener('click', function() {
+    loadCSS('css/about.css');
+});
+
+// Загрузка стилей для Map
+document.getElementById('mapLink').addEventListener('click', function() {
+    loadCSS('css/map.css');
+});
+
+// Загрузка стилей для Residentialcomplexes
+document.getElementById('ResidentialcomplexesLink').addEventListener('click', function() {
+    loadCSS('css/Residentialcomplexes.css');
+});
+
+    // Функция для динамической загрузки скриптов
+function loadScript(url) {
+    const script = document.createElement('script');
+    script.src = url;
+    document.head.appendChild(script);
+}
+
+// Загрузка menu
+document.getElementById('menuLink').addEventListener('click', function() {
+    loadScript('js/menu.js'); // Подключаем menu.js
+});
+
+document.getElementById('aboutLink').addEventListener('click', function() {
+    loadScript('js/about.js'); // Подключаем about.js
+});
+
+document.getElementById('mapLink').addEventListener('click', function() {
+    loadScript('js/map.js'); // Подключаем map.js
+});
+    
+    
+  </body>
+</html>
