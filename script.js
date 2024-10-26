@@ -13,14 +13,6 @@ function loadScript(url) {
     document.head.appendChild(script);
 }
 
-// Автоматическая загрузка стилей для различных компонентов
-loadCSS('style.css');
-loadCSS('home/logo/logo.css');
-loadCSS('home/menu/menu.css');
-loadCSS('home/slide/slide.css');
-loadCSS('about/about.css');
-loadCSS('map/map.css');
-loadCSS('Residentialcomplexes/Residentialcomplexes.css');
 
 // Автоматическая загрузка скриптов для различных компонентов
 loadScript('home/logo/logo.js');
