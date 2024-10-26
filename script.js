@@ -13,48 +13,22 @@ function loadScript(url) {
     document.head.appendChild(script);
 }
 
-// Загрузка стилей для различных компонентов
-document.getElementById('styleLink')?.addEventListener('click', function() {
-    loadCSS('style.css');
-});
-document.getElementById('logoLink')?.addEventListener('click', function() {
-    loadCSS('home/logo/logo.css');
-});
-document.getElementById('menuLink')?.addEventListener('click', function() {
-    loadCSS('home/menu/menu.css');
-});
-document.getElementById('slideLink')?.addEventListener('click', function() {
-    loadCSS('home/slide/slide.css');
-});
-document.getElementById('aboutLink')?.addEventListener('click', function() {
-    loadCSS('about/about.css');
-});
-document.getElementById('mapLink')?.addEventListener('click', function() {
-    loadCSS('map/map.css');
-});
-document.getElementById('ResidentialcomplexesLink')?.addEventListener('click', function() {
-    loadCSS('Residentialcomplexes/Residentialcomplexes.css');
-});
+// Автоматическая загрузка стилей для различных компонентов
+loadCSS('style.css');
+loadCSS('home/logo/logo.css');
+loadCSS('home/menu/menu.css');
+loadCSS('home/slide/slide.css');
+loadCSS('about/about.css');
+loadCSS('map/map.css');
+loadCSS('Residentialcomplexes/Residentialcomplexes.css');
 
-// Загрузка скриптов для различных компонентов
-document.getElementById('logoLink')?.addEventListener('click', function() {
-    loadScript('home/logo.js');
-});
-document.getElementById('menuLink')?.addEventListener('click', function() {
-    loadScript('home/menu.js');
-});
-document.getElementById('slideLink')?.addEventListener('click', function() {
-    loadScript('home/slide.js');
-});
-document.getElementById('aboutLink')?.addEventListener('click', function() {
-    loadScript('about/about.js');
-});
-document.getElementById('mapLink')?.addEventListener('click', function() {
-    loadScript('map/map.js');
-});
-document.getElementById('ResidentialcomplexesLink')?.addEventListener('click', function() {
-    loadScript('Residentialcomplexes/Residentialcomplexes.js');
-});
+// Автоматическая загрузка скриптов для различных компонентов
+loadScript('home/logo/logo.js');
+loadScript('home/menu/menu.js');
+loadScript('home/slide/slide.js');
+loadScript('about/about.js');
+loadScript('map/map.js');
+loadScript('Residentialcomplexes/Residentialcomplexes.js');
 
 
 // Загрузка меню
