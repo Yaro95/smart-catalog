@@ -256,12 +256,20 @@
     <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a> <!-- Ссылка на раздел с картой -->
     <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a> <!-- Ссылка на раздел жилых комплексов -->
   </div>
+  
+    <!-- Блок с описанием о компании -->
+  <div id="complexDescription">
+    Компания ISM и т.д. <!-- Описание компании -->
+  </div>
+
+  <!-- Контейнер для карты -->
+  <div id="map"></div>
 
  <!-- Раздел для отображения объектов с картинками и описанием -->
 <div id="residentialComplexes" style="display: none;">
   <!-- Разделы по каждому ЖК -->
   <div class="complex">
-    <a href="#complex1Page" id="complex1Link">
+    <a href="#" onclick="showComplexDetail('complex1')">
       <div class="card-image">
         <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/1.jpeg" alt="Комплекс 1">
         <!-- Метки поверх изображения -->
@@ -277,7 +285,7 @@
   </div>
 
   <div class="complex">
-    <a href="#complex2Page" id="complex2Link">
+    <a href="#" onclick="showComplexDetail('complex2')">
       <div class="card-image">
         <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/2.jpeg" alt="Комплекс 2">
         <!-- Метки поверх изображения -->
@@ -291,7 +299,7 @@
   </div>
 
   <div class="complex">
-    <a href="#complex3Page" id="complex3Link">
+    <a href="#" onclick="showComplexDetail('complex3')">
       <div class="card-image">
         <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/images1/1.jpeg" alt="Комплекс 3">
         <!-- Метки поверх изображения -->
@@ -305,19 +313,25 @@
   </div>
 </div>
 
-  <!-- Блок с описанием о компании -->
-  <div id="complexDescription">
-    Компания ISM и т.д. <!-- Описание компании -->
-  </div>
 
-  <!-- Контейнер для карты -->
-  <div id="map"></div>
   
   <!-- Кнопка для возврата на главную панель -->
 <button id="backButton" style="display: none; position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
-  ← Назад
+  ← назад или нет =)   <!-- наименования или вид кнопки -->
 </button>
 
+    <!-- Чистый лист с информацией о выбранном комплексе -->
+<div id="complexDetailPage" style="display: none;">
+  <button id="backToComplexesButton" style="position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    ← Назад
+  </button>
+  <div id="complexDetailContent" style="padding: 20px; text-align: center;">
+    <h1>Информация о комплексе</h1>
+    <p>Описание комплекса будет здесь.</p>
+  </div>
+</div>
+  
+  
   <!-- Скрипты -->
   <script>
     // Массив с изображениями для слайд-шоу
@@ -482,10 +496,55 @@ backButton.addEventListener('click', function() {
         mapInitialized = true; // Устанавливаем флаг после инициализации карты
       }
     }
+    
+    // Элементы DOM
+const complexDetailPage = document.getElementById('complexDetailPage');
+const backToComplexesButton = document.getElementById('backToComplexesButton');
+const complexDetailContent = document.getElementById('complexDetailContent');
+
+// Функция для отображения информации о выбранном комплексе
+function showComplexDetail(complexId) {
+  // Пример контента для каждого комплекса
+  const complexInfo = {
+    complex1: {
+      title: "Комплекс 1",
+      description: "Описание комплекса 1. Это красивый комплекс с уникальными характеристиками."
+    },
+    complex2: {
+      title: "Комплекс 2",
+      description: "Описание комплекса 2. Комплекс с замечательными удобствами."
+    },
+    complex3: {
+      title: "Комплекс 3",
+      description: "Описание комплекса 3. Комплекс, идеально подходящий для семей."
+    }
+  };
+
+  // Устанавливаем информацию о выбранном комплексе
+  const selectedComplex = complexInfo[complexId];
+  complexDetailContent.innerHTML = `
+    <h1>${selectedComplex.title}</h1>
+    <p>${selectedComplex.description}</p>
+  `;
+
+  // Показываем чистый лист и скрываем другие разделы
+  complexDetailPage.style.display = 'block';
+  residentialComplexes.style.display = 'none';
+  backButton.style.display = 'none';
+}
+
+// Обработчик для кнопки "Назад" на чистом листе комплекса
+backToComplexesButton.addEventListener('click', function() {
+  // Скрываем чистый лист и возвращаемся к списку комплексов
+  complexDetailPage.style.display = 'none';
+  residentialComplexes.style.display = 'flex';
+  backButton.style.display = 'block';
+});
 
   </script>
 
   <!-- Подключаем API Яндекс.Карт -->
   <script src="https://api-maps.yandex.ru/2.1/?apikey=ТВОЙ_API_КЛЮЧ&lang=ru_RU"></script>
+  
 </body>
 </html>
