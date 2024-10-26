@@ -15,50 +15,50 @@ function loadScript(url) {
 
 // Загрузка стилей для различных компонентов
 document.getElementById('styleLink')?.addEventListener('click', function() {
-    loadCSS('css/style.css');
+    loadCSS('style.css');
 });
 document.getElementById('logoLink')?.addEventListener('click', function() {
-    loadCSS('css/logo.css');
+    loadCSS('home/logo/logo.css');
 });
 document.getElementById('menuLink')?.addEventListener('click', function() {
-    loadCSS('css/menu.css');
+    loadCSS('home/menu/menu.css');
 });
 document.getElementById('slideLink')?.addEventListener('click', function() {
-    loadCSS('css/slide.css');
+    loadCSS('home/slide/slide.css');
 });
 document.getElementById('aboutLink')?.addEventListener('click', function() {
-    loadCSS('css/about.css');
+    loadCSS('about/about.css');
 });
 document.getElementById('mapLink')?.addEventListener('click', function() {
-    loadCSS('css/map.css');
+    loadCSS('map/map.css');
 });
 document.getElementById('ResidentialcomplexesLink')?.addEventListener('click', function() {
-    loadCSS('css/Residentialcomplexes.css');
+    loadCSS('Residentialcomplexes/Residentialcomplexes.css');
 });
 
 // Загрузка скриптов для различных компонентов
 document.getElementById('logoLink')?.addEventListener('click', function() {
-    loadScript('js/logo.js');
+    loadScript('home/logo.js');
 });
 document.getElementById('menuLink')?.addEventListener('click', function() {
-    loadScript('js/menu.js');
+    loadScript('home/menu.js');
 });
 document.getElementById('slideLink')?.addEventListener('click', function() {
-    loadScript('js/slide.js');
+    loadScript('home/slide.js');
 });
 document.getElementById('aboutLink')?.addEventListener('click', function() {
-    loadScript('js/about.js');
+    loadScript('about/about.js');
 });
 document.getElementById('mapLink')?.addEventListener('click', function() {
-    loadScript('js/map.js');
+    loadScript('map/map.js');
 });
 document.getElementById('ResidentialcomplexesLink')?.addEventListener('click', function() {
-    loadScript('js/Residentialcomplexes.js');
+    loadScript('Residentialcomplexes/Residentialcomplexes.js');
 });
 
 
 // Загрузка меню
-fetch('menu/menu.html')
+fetch('home/menu/menu.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('menu-container').innerHTML = data;
@@ -66,7 +66,7 @@ fetch('menu/menu.html')
   .catch(error => console.error('Ошибка загрузки меню:', error));
 
 // Загрузка лого
-fetch('logo/logo.html')
+fetch('home/logo/logo.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('logo-container').innerHTML = data;
@@ -74,7 +74,7 @@ fetch('logo/logo.html')
   .catch(error => console.error('Ошибка загрузки меню:', error));
 
 // Загрузка слайда
-fetch('slide/slide.html')
+fetch('home/slide/slide.html')
   .then(response => response.text())
   .then(data => {
     document.getElementById('slide-container').innerHTML = data;
