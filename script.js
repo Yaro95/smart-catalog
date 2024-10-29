@@ -1,3 +1,16 @@
+  // Элементы DOM
+    const imageContainer = document.getElementById('imageContainer');//Контейнер для слайд   
+    const slideshowImage = document.getElementById('slideshowImage');//сам слайд 
+    const menu = document.getElementById('menu');//Меню
+    const complexDescription = document.getElementById('complexDescription');//Описания компании 
+    const map = document.getElementById('map');//Контейнер для карты
+    const residentialComplexes = document.getElementById('residentialComplexes');//Для Обьектов ЖК
+const backButton = document.getElementById('backButton');
+
+
+
+
+
 // Массив с изображениями для слайд-шоу
     const images = ['https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg', 'https://raw.githubusercontent.com/Yaro95/smart-catalog/main/2.jpeg']; 
     let currentIndex = 0; // Текущий индекс слайда
@@ -7,13 +20,7 @@
     let currentPosX = 0;
     let isDragging = false;
 
-    // Элементы DOM
-    const slideshowImage = document.getElementById('slideshowImage');
-    const imageContainer = document.getElementById('imageContainer');
-    const menu = document.getElementById('menu');
-    const complexDescription = document.getElementById('complexDescription');
-    const map = document.getElementById('map');
-    const residentialComplexes = document.getElementById('residentialComplexes');
+  
 
     // Функция для показа следующего слайда
     function showNextImage() {
@@ -85,7 +92,7 @@
 
     // Старт слайд-шоу при загрузке страницы
     startSlideshow();
-
+//------------------------------------------------------------------------------------------------------------------------------
     // Обработчики для меню
     document.getElementById('aboutLink').addEventListener('click', function(event) {
       event.preventDefault(); // Предотвращаем стандартное действие ссылки
@@ -94,7 +101,6 @@
       imageContainer.style.display = 'none'; // Скрываем слайд-шоу
       map.style.display = 'none'; // Скрываем карту
     });
-
     document.getElementById('homeLink').addEventListener('click', function(event) {
       event.preventDefault(); // Предотвращаем стандартное действие ссылки
       complexDescription.style.display = 'none'; // Скрываем описание компании
@@ -102,7 +108,6 @@
       map.style.display = 'none'; // Скрываем карту
       imageContainer.style.display = 'flex'; // Показываем слайд-шоу
     });
-
     document.getElementById('locationLink').addEventListener('click', function(event) {
       event.preventDefault(); // Предотвращаем стандартное действие ссылки
       complexDescription.style.display = 'none'; // Скрываем описание компании
@@ -119,30 +124,7 @@
       imageContainer.style.display = 'none'; // Скрываем слайд-шоу
       residentialComplexes.style.display = 'flex'; // Показываем список объектов
     });
-    
-    // Элемент кнопки "Назад"
-const backButton = document.getElementById('backButton');
-
-// Обработчик для ссылки "Жилые комплексы"
-document.getElementById('residentialLink').addEventListener('click', function(event) {
-  event.preventDefault(); // Предотвращаем стандартное действие ссылки
-  
-  // Скрываем меню и слайд-шоу, показываем раздел с объектами и кнопку "Назад"
-  menu.style.display = 'none';
-  imageContainer.style.display = 'none';
-  document.getElementById('residentialComplexes').style.display = 'flex';
-  backButton.style.display = 'block';
-});
-
-// Обработчик для кнопки "Назад"
-backButton.addEventListener('click', function() {
-  // Скрываем раздел с объектами и кнопку "Назад", показываем меню и слайд-шоу
-  document.getElementById('residentialComplexes').style.display = 'none';
-  backButton.style.display = 'none';
-  menu.style.display = 'block';
-  imageContainer.style.display = 'flex';
-});
-
+//------------------------------------------------------------------------------------------------------------------------------ 
     // Инициализация Яндекс.Карт
     function initMap() {
       if (!mapInitialized) { // Проверяем, была ли уже инициализирована карта
@@ -160,42 +142,173 @@ backButton.addEventListener('click', function() {
         mapInitialized = true; // Устанавливаем флаг после инициализации карты
       }
     }
-    
-    // Элементы DOM
-const complexDetailPage = document.getElementById('complexDetailPage');
-const backToComplexesButton = document.getElementById('backToComplexesButton');
-const complexDetailContent = document.getElementById('complexDetailContent');
+ //-----------------------------------------------------------------------------------------------------------------------------  // Данные комплексов
+const complexes = [
+  {
+    id: "complex1",
+    name: "Комплекс 1",
+    imageUrl: "https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg",
+    labels: ["Срок сдачи", "Рассрочка", "Скидка 5%"]
+  },
+  {
+    id: "complex2",
+    name: "Комплекс 2",
+    imageUrl: "https://raw.githubusercontent.com/Yaro95/smart-catalog/main/2.jpeg",
+    labels: ["Срок сдачи", "Рассрочка"]
+  },
+  {
+    id: "complex3",
+    name: "Комплекс 3",
+    imageUrl: "https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg",
+    labels: ["Скидка 10%", "Рассрочка"]
+  }
+];
+
+
+
+// Функция создания HTML комплекса
+function createComplexHtml(complex) {
+  const complexDiv = document.createElement("div");
+  complexDiv.classList.add("complex");
+
+  const anchor = document.createElement("a");
+  anchor.href = "#";
+  anchor.onclick = () => showComplexDetail(complex.id);
+
+  const cardImage = document.createElement("div");
+  cardImage.classList.add("card-image");
+
+  const img = document.createElement("img");
+  img.src = complex.imageUrl;
+  img.alt = complex.name;
+
+  const labelsDiv = document.createElement("div");
+  labelsDiv.classList.add("labels");
+
+  complex.labels && complex.labels.forEach(labelText =>  {
+  const label = document.createElement("span");
+
+  // Применяем класс на основе текста метки
+  if (labelText.includes("Срок сдачи")) {
+    console.log("Label text:", labelText); // Показывает, какой текст обрабатывается
+    console.log("Найдена Срок сдачи:", labelText);
+    label.classList.add("label-srok-sdachi");
+  } else if (labelText.includes("Рассрочка")) {
+    console.log("Найдена Рассрочка:", labelText);
+    label.classList.add("label-rassrochka");
+  } else if (labelText.includes("Скидка")) {
+    console.log("Найдена Скидка:", labelText);
+    label.classList.add("label-skidka");
+  }
+
+  label.textContent = labelText;
+  labelsDiv.appendChild(label);
+});
+  
+  cardImage.appendChild(img);
+  cardImage.appendChild(labelsDiv);
+  anchor.appendChild(cardImage);
+
+  const nameParagraph = document.createElement("p");
+  nameParagraph.textContent = complex.name;
+  anchor.appendChild(nameParagraph);
+
+  complexDiv.appendChild(anchor);
+
+  return complexDiv;
+}
+
+// Заполняем контейнер
+complexes.forEach(complex => {
+  residentialComplexes.appendChild(createComplexHtml(complex));
+});
+
+// Обработчик для ссылки "Жилые комплексы"
+document.getElementById('residentialLink').addEventListener('click', function(event) {
+  event.preventDefault(); // Предотвращаем стандартное действие ссылки
+  
+  // Скрываем меню и слайд-шоу, показываем раздел с объектами и кнопку "Назад"
+  menu.style.display = 'none';
+  imageContainer.style.display = 'none';
+  residentialComplexes.style.display = 'flex';
+  backButton.style.display = 'block';
+});
+
+// Обработчик для кнопки "Назад"
+backButton.addEventListener('click', function() {
+  // Скрываем раздел с объектами и кнопку "Назад", показываем меню и слайд-шоу
+  residentialComplexes.style.display = 'none';
+  backButton.style.display = 'none';
+  menu.style.display = 'block';
+  imageContainer.style.display = 'flex';
+});
+//------------------------------------------------------------------------------------------------------------------------------  
+// Элементы DOM
+const complexDetailPage = document.getElementById('complexDetailPage');//чистый лист
+const backToComplexesButton = document.getElementById('backToComplexesButton');//кнопка назад
+const complexDetailContent = document.getElementById('complexDetailContent');//контент img 
+const complexImage = document.getElementById('complexImage');
+
+// Проверка, что все элементы DOM определены
+console.log("complexDetailPage:", complexDetailPage);
+console.log("backToComplexesButton:", backToComplexesButton);
+console.log("complexDetailContent:", complexDetailContent);
+console.log("complexImage:", complexImage);
+console.log("residentialComplexes:", residentialComplexes);
+console.log("backButton:", backButton);
+
+
 
 // Функция для отображения информации о выбранном комплексе
 function showComplexDetail(complexId) {
+  console.log("showComplexDetail вызван с ID:", complexId);
   // Пример контента для каждого комплекса
   const complexInfo = {
     complex1: {
       title: "Комплекс 1",
-      description: "Описание комплекса 1. Это красивый комплекс с уникальными характеристиками."
+      description: "Описание комплекса 1. Это красивый комплекс с уникальными характеристиками.",
+      imageUrl: "https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg"
     },
     complex2: {
       title: "Комплекс 2",
-      description: "Описание комплекса 2. Комплекс с замечательными удобствами."
+      description: "Описание комплекса 2. Комплекс с замечательными удобствами.",
+      imageUrl: "https://raw.githubusercontent.com/Yaro95/smart-catalog/main/2.jpeg"
     },
     complex3: {
       title: "Комплекс 3",
-      description: "Описание комплекса 3. Комплекс, идеально подходящий для семей."
+      description: "Описание комплекса 3. Комплекс, идеально подходящий для семей.",
+      imageUrl: "https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg"
     }
   };
 
-  // Устанавливаем информацию о выбранном комплексе
+  // Проверка выбранного комплекса
   const selectedComplex = complexInfo[complexId];
+  if (!selectedComplex) {
+    console.error("Complex not found:", complexId);
+    return;
+  }
+
+  console.log("Complex info:", selectedComplex);
+
+  // Устанавливаем информацию о выбранном комплексе
   complexDetailContent.innerHTML = `
     <h1>${selectedComplex.title}</h1>
     <p>${selectedComplex.description}</p>
   `;
+
+ // Проверка, что элемент complexImage существует
+console.log("complexImage элемент:", complexImage);
+
+// Устанавливаем изображение комплекса
+complexImage.src = selectedComplex.imageUrl;
+console.log("complexImage.src установлен в:", complexImage.src);
 
   // Показываем чистый лист и скрываем другие разделы
   complexDetailPage.style.display = 'block';
   residentialComplexes.style.display = 'none';
   backButton.style.display = 'none';
 }
+console.log("complexDetailPage display set to block");
 
 // Обработчик для кнопки "Назад" на чистом листе комплекса
 backToComplexesButton.addEventListener('click', function() {
@@ -205,3 +318,6 @@ backToComplexesButton.addEventListener('click', function() {
   backButton.style.display = 'block';
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM fully loaded and parsed");
+});
