@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ISM Строй</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css"> <!-- Подключение общего CSS -->
 </head>
 <body>
@@ -22,87 +23,42 @@
     <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a> <!-- Ссылка на раздел с картой -->
     <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a> <!-- Ссылка на раздел жилых комплексов -->
   </div>
-  
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --> 
     <!-- Блок с описанием о компании -->
   <div id="complexDescription">
     Компания ISM и т.д. <!-- Описание компании -->
   </div>
-
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
   <!-- Контейнер для карты -->
   <div id="map"></div>
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------------- -->
- <!-- Раздел для отображения объектов с картинками и описанием -->
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Раздел для отображения объектов с картинками и описанием -->
 <div id="residentialComplexes" style="display: none;">
-  <!-- Разделы по каждому ЖК -->
-  <div class="complex">
-    <a href="#" onclick="showComplexDetail('complex1')">
-      <div class="card-image">
-        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg" alt="Комплекс 1">
-        <!-- Метки поверх изображения -->
-        <div class="labels">
-          <!--если будешь добовлять еще строчки то добавь в стиле цвет-->
-          <span class="label-green">срок сдачи</span>
-          <span class="label-orange">Рассрочка</span>
-          <span class="label-purple">Скидки 5%</span>
-        </div>
-      </div>
-      <p>Комплекс 1</p>
-    </a>
-  </div>
-
-  <div class="complex">
-    <a href="#" onclick="showComplexDetail('complex2')">
-      <div class="card-image">
-        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/2.jpeg" alt="Комплекс 2">
-        <!-- Метки поверх изображения -->
-        <div class="labels">
-          <span class="label-green">Срок сдачи</span>
-          <span class="label-orange">Без процентная рассрочка</span>
-        </div>
-      </div>
-      <p>Комплекс 2</p>
-    </a>
-  </div>
-
-  <div class="complex">
-    <a href="#" onclick="showComplexDetail('complex3')">
-      <div class="card-image">
-        <img src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg" alt="Комплекс 3">
-        <!-- Метки поверх изображения -->
-        <div class="labels">
-          <span class="label-green">Скидка 10%</span>
-          <span class="label-orange">Готов к сдаче</span>
-        </div>
-      </div>
-      <p>Комплекс 3</p>
-    </a>
-  </div>
+  <!-- Комплексы будут добавлены здесь с помощью JavaScript -->
 </div>
 
-
-  
-  <!-- Кнопка для возврата на главную панель -->
+<!-- Кнопка для возврата на главную панель -->
 <button id="backButton" style="display: none; position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
-  ← назад или нет =)   <!-- наименования или вид кнопки -->
+  ← назад 1
 </button>
 
-    <!-- Чистый лист с информацией о выбранном комплексе -->
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+   <!-- Чистый лист с информацией о выбранном комплексе -->
 <div id="complexDetailPage" style="display: none;">
   <button id="backToComplexesButton" style="position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
-    ← Назад
+    ← Назад 2
   </button>
-  <div id="complexDetailContent" style="padding: 20px; text-align: center;">
-    <h1>Информация о комплексе</h1>
-    <p>Описание комплекса будет здесь.</p>
+  <div id="complexDetailContent" style="text-align: center;">
+    <img id="complexImage" src="" alt="Изображение комплекса" style="max-width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
   </div>
 </div>
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
   
    <!-- Подключаем основной JavaScript файл -->
   <script src="script.js"></script>
-
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
   <!-- Подключаем API Яндекс.Карт -->
   <script src="https://api-maps.yandex.ru/2.1/?apikey=ТВОЙ_API_КЛЮЧ&lang=ru_RU"></script>
-  
+ <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --> 
 </body>
 </html>
