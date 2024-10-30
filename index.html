@@ -1,60 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Мета-данные документа -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ISM Строй</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css"> <!-- Подключение общего CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Контейнер для слайд-шоу -->
   <div id="imageContainer">
-    <img id="slideshowImage" src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg" alt="Слайд 1"> <!-- Изображение для слайд-шоу -->
-    <img id="logo" src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/3.jpeg" alt="Логотип"> <!-- Логотип -->
+    <img id="slideshowImage" src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/1.jpeg" alt="Слайд 1">
+    <img id="logo" src="https://raw.githubusercontent.com/Yaro95/smart-catalog/main/3.jpeg" alt="Логотип">
   </div>
 
-  <!-- Меню -->
   <div id="menu">
-    <a href="#home" id="homeLink">ГЛАВНАЯ</a> <!-- Ссылка на главную страницу -->
-    <a href="#about" id="aboutLink">О КОМПАНИИ</a> <!-- Ссылка на раздел "О компании" -->
-    <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a> <!-- Ссылка на раздел с картой -->
-    <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a> <!-- Ссылка на раздел жилых комплексов -->
+    <a href="#home" id="homeLink">ГЛАВНАЯ</a>
+    <a href="#about" id="aboutLink">О КОМПАНИИ</a>
+    <a href="#location" id="locationLink">РАСПОЛОЖЕНИЕ</a>
+    <a href="#Residentialcomplexes" id="residentialLink">ЖИЛЫЕ КОМПЛЕКСЫ</a>
   </div>
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --> 
-    <!-- Блок с описанием о компании -->
+
   <div id="complexDescription">
-    Компания ISM и т.д. <!-- Описание компании -->
+    Компания ISM и т.д.
   </div>
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
   <!-- Контейнер для карты -->
   <div id="map"></div>
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-<!-- Раздел для отображения объектов с картинками и описанием -->
-<div id="residentialComplexes" style="display: none;">
-  <!-- Комплексы будут добавлены здесь с помощью JavaScript -->
-</div>
 
-<!-- Кнопка для возврата на главную панель -->
-<button id="backButton" style="display: none; position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
-  ← назад 1
-</button>
-
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-   <!-- Чистый лист с информацией о выбранном комплексе -->
-<div id="complexDetailPage" style="display: none;">
-  <button id="backToComplexesButton" style="position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
-    ← Назад 2
-  </button>
-  <div id="complexDetailContent" style="text-align: center;">
-    <img id="complexImage" src="" alt="Изображение комплекса" style="max-width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
+  <div id="residentialComplexes" style="display: none;">
+    <!-- Карточки комплексов будут добавлены здесь с помощью JavaScript -->
   </div>
-</div>
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-  
-   <!-- Подключаем основной JavaScript файл -->
+
+  <button id="backButton" style="display: none; position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    ← назад
+  </button>
+
+  <div id="complexDetailPage" style="display: none;">
+    <button id="backToComplexesButton" style="position: absolute; top: 10px; left: 10px; padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      ← Назад
+    </button>
+    <div id="complexDetailContent" style="text-align: center;">
+      <!-- Контент для выбранного комплекса будет добавлен здесь через JavaScript -->
+    </div>
+  </div>
+
   <script src="script.js"></script>
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
   <!-- Подключаем API Яндекс.Карт -->
